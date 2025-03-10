@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\imagem\**" />
+    <Content Remove="wwwroot\imagem\**" />
+    <EmbeddedResource Remove="wwwroot\imagem\**" />
+    <None Remove="wwwroot\imagem\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\images\472448171_122129202044474700_2977790882836583195_n.jpg14716b11-d06f-4f65-9a7a-f0e094c276f5.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Biblioteca.Servico\Biblioteca.Servico.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

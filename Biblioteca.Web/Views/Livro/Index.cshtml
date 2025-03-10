@@ -1,0 +1,65 @@
+@model List<Biblioteca.Servico.model.LivroModel>
+@{
+    ViewData["Title"] = "Catálogo de Livros";
+}
+
+<div class="banner text-center text-white d-flex align-items-center justify-content-center">
+        <h1>Biblioteca Web.</h1>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-between mb-4">
+        <h2 class="discord-color">Catálogo de Livros</h2>
+        <a class="btn btn-primary" asp-controller="Livro" asp-action="Create">Criar Livro</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        @if (Model != null && Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="~/images/@item.Imagem" class="card-img-top" alt="Imagem do Livro" style="width: 100%; height: 250px; object-fit: contain;">
+                        <div class="card-body">
+                            <h4 class="card-title discord-color">@item.Name</h4>
+                            <p class="card-text"><strong style="color: white;">Autor:</strong> @item.Autor</p>
+                            <p class="card-text"><strong style="color: white;">Genero:</strong> @item.Genero</p>
+                            <p class="card-text"><strong style="color: white;">Idioma:</strong> @item.Idioma</p>
+                            <p class="card-text"><strong style="color: white;">Ano:</strong> @item.ano</p>
+                            <p class="card-text"><strong style="color: white;">Status:</strong> @(item.LivroFinalizado ? "Finalizado" : "Em progresso")</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-dark">
+                            <a class="btn btn-primary" asp-controller="Livro" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                            <a class="btn btn-danger btn-produto-delete" data-toggle="modal" data-target="#modalProdutoDelete"
+                               data-id="@item.Id" data-titulo="@item.Name" data-url="@Url.Action("Delete", "Livro")">Excluir</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-center">Nenhum livro cadastrado.</p>
+        }
+    </div>
+    <!------------------------------------------------------------------------------------------------------------>
+    <div id="modalProdutoDelete" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Deletar Livro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza de que deseja excluir o livro: <span id="titulo"></span>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="confirmDelete" type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!----------------------------------------------MODAL delete-------------------------------------------------------------->
+</div>

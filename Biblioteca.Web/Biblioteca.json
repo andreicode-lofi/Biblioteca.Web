@@ -1,0 +1,62 @@
+[
+  {
+    "Id": "f45f9594-b071-4563-80d8-6e303534a305",
+    "Name": "Senhor dos aneis 2",
+    "Autor": "j. r. r. tolkien",
+    "Genero": "Dark fantasy",
+    "Idioma": "Protugu\u00EAs",
+    "LivroFinalizado": true,
+    "Imagem": "9786555114355.webpe3c27db9-4f7f-41c6-a61a-493b8cc6d724.png",
+    "ano": 1999
+  },
+  {
+    "Id": "df6348e3-823e-4d6d-a227-e01936422162",
+    "Name": "O chamado de cthulhu",
+    "Autor": "H. P. Lovecraft",
+    "Genero": "Terror c\u00F3smico",
+    "Idioma": "Protugu\u00EAs",
+    "LivroFinalizado": true,
+    "Imagem": "o_chamado_de_cthulhu_9788525435163_g.jpg824095c5-2698-4823-8b05-dec11f07156c.png",
+    "ano": 1987
+  },
+  {
+    "Id": "3d8d5548-af1a-4c51-815d-48cc6cede8d6",
+    "Name": "A cor que caiu do c\u00E9u",
+    "Autor": "H. P. Lovecraft",
+    "Genero": "Terror c\u00F3smico",
+    "Idioma": "Protugu\u00EAs",
+    "LivroFinalizado": false,
+    "Imagem": "cor-caiu-ceu-melhores-contos-h-p-lovecraft-livro-3-ce22-capa.webpb57d255f-482d-4a59-a00a-ff7397fd3f65.png",
+    "ano": 1985
+  },
+  {
+    "Id": "91c707a6-6ac9-47f6-a975-0675339ede8e",
+    "Name": "Harry Potter: E a pedra filosofal",
+    "Autor": "J. K. Rowling",
+    "Genero": "Fantasy",
+    "Idioma": "Ingl\u00EAs",
+    "LivroFinalizado": false,
+    "Imagem": "d9332107-5307-4582-8da9-66b3d05ff203.jpg333c4a39-df98-4913-9710-729de0f9da9d.png",
+    "ano": 1993
+  },
+  {
+    "Id": "26997e2c-1688-4f2f-aef5-5f8243f131b7",
+    "Name": "O Hobbit",
+    "Autor": "j r r tolkien",
+    "Genero": "Fantasy",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": true,
+    "Imagem": "511\u002B-lootsl._sy445_sx342_.jpg3973295b-5102-47bf-b3b9-a56ff5820bc7.png",
+    "ano": 1999
+  },
+  {
+    "Id": "ed56814b-173c-4826-9d26-443e964aae13",
+    "Name": "O \u00FAltimo rei drag\u00E3o",
+    "Autor": "J. K. Rowling",
+    "Genero": "Fantasy",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": false,
+    "Imagem": "91z92c6urxl._sl1500_.jpg277b0dfe-0529-4359-b608-17052d7bd4ee.png",
+    "ano": 2022
+  }
+]
