@@ -28,9 +28,6 @@ public class LivroController : Controller
         .ToPagedList(pageNumber, pageSize);
 
         return View(livros);
-
-        /* var livros = _gerenciadorDelivros.getAll();
-         return View(livros);*/
     }
 
     [HttpGet("Livro/Create")]
