@@ -1,4 +1,3 @@
-
 <h2>🛠 Tecnologias Utilizadas</h2>
 <ul>
     <li>ASP.NET 9</li>
@@ -13,6 +12,11 @@
     <li>Armazenamento dos dados em um arquivo JSON.</li>
     <li>Interface web para exibição do catálogo.</li>
     <li>Upload de imagens com <strong>pré-visualização antes do envio</strong>.</li>
+</ul>
+
+<h2>🆕 Atualizações</h2>
+<ul>
+    <li><strong>📖 Paginação no Catálogo:</strong> Agora o catálogo de livros conta com paginação, permitindo uma melhor navegação e organização dos livros cadastrados.</li>
 </ul>
 
 <h2>🚀 Como Executar</h2>
