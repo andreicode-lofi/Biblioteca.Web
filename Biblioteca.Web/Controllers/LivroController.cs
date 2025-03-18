@@ -1,6 +1,7 @@
 using Biblioteca.Servico.model;
 using Biblioteca.Servico.Servicos;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList.Extensions;
 
 namespace Biblioteca.Web.Controllers;
 
@@ -17,10 +18,19 @@ public class LivroController : Controller
     }
 
     [HttpGet]
-    public IActionResult Index()
+    public IActionResult Index(int? page)
     {
-        var livros = _gerenciadorDelivros.getAll();
+        int pageSize = 6;
+        int pageNumber = (page ?? 1);
+
+        var livros = _gerenciadorDelivros.getAll()
+        .OrderBy(l => l.Name)
+        .ToPagedList(pageNumber, pageSize);
+
         return View(livros);
+
+        /* var livros = _gerenciadorDelivros.getAll();
+         return View(livros);*/
     }
 
     [HttpGet("Livro/Create")]

@@ -58,5 +58,75 @@
     "LivroFinalizado": false,
     "Imagem": "91z92c6urxl._sl1500_.jpg277b0dfe-0529-4359-b608-17052d7bd4ee.png",
     "ano": 2022
+  },
+  {
+    "Id": "4e054131-1bd0-45cd-add6-f5bafa8d3207",
+    "Name": "O cavaleiro preso na armadura",
+    "Autor": "Robert Fisher",
+    "Genero": "Historia",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": false,
+    "Imagem": "91of8o2yfpl._sl1500_.jpgbb0dbe2a-2ce0-41dd-9db1-d11a11f0dcbc.png",
+    "ano": 2020
+  },
+  {
+    "Id": "9a408614-c6e4-4f3d-a6f0-49397cf4fd45",
+    "Name": "Cyberpunk 2077: Nenhum acaso",
+    "Autor": "Rafat Kosik",
+    "Genero": "Fic\u00E7\u00E3o",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": true,
+    "Imagem": "a1gogq-4bzl._sl1500_.jpg760c1f80-2db2-46f7-a174-39f77b055799.png",
+    "ano": 2023
+  },
+  {
+    "Id": "a867bc08-27f9-44d3-b765-2183a2fdac39",
+    "Name": "A revolu\u00E7\u00E3o dos bichos: Um conto de fadas",
+    "Autor": "George Orwell",
+    "Genero": "Historia",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": true,
+    "Imagem": "91bszhxcrjl._sl1500_.jpg08efc545-a2fa-436e-b7d0-ccee3c751991.png",
+    "ano": 1945
+  },
+  {
+    "Id": "1644ffe7-8097-4611-a14e-301f6205df55",
+    "Name": "Berserk Vol. 1",
+    "Autor": "Kentaro Miura",
+    "Genero": "Anime",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": true,
+    "Imagem": "61k0fw6l1-l._sl1455_.jpg69da29fe-52cd-45e4-87d4-56c0bcf4dcd1.png",
+    "ano": 1999
+  },
+  {
+    "Id": "68d112e4-bf82-4a8b-94a1-16821e7cc0e5",
+    "Name": "Nas Montanhas do Terror",
+    "Autor": " Junpei Azumi",
+    "Genero": "Terror",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": true,
+    "Imagem": "81j3k2lufcl._sl1500_.jpgd097d0a2-c955-4c99-a5c1-44e85d0fa8aa.png",
+    "ano": 2023
+  },
+  {
+    "Id": "e102f88d-eda0-48ed-ae09-ba6654e0f811",
+    "Name": "Dark Souls: Redemption 01 ",
+    "Autor": "Shonen Julien Blondel ",
+    "Genero": "Dark fantasy",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": true,
+    "Imagem": "61ee7by9e3l.jpge2a755f4-b506-4cd4-b67d-0499ad651544.png",
+    "ano": 2005
+  },
+  {
+    "Id": "85100944-b7e4-4079-ad42-1cf905d41f6f",
+    "Name": "Tartarugas Ninja: O \u00DAltimo Ronin",
+    "Autor": "Peter Laird",
+    "Genero": "Anime",
+    "Idioma": "Portugu\u00EAs",
+    "LivroFinalizado": false,
+    "Imagem": "91r8idf8l5l._sl1500_.jpg601ce510-898f-493b-9284-fc8fe21bc493.png",
+    "ano": 2024
   }
 ]

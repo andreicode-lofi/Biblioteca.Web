@@ -1,4 +1,5 @@
-@model List<Biblioteca.Servico.model.LivroModel>
+@model X.PagedList.IPagedList<Biblioteca.Servico.model.LivroModel>
+@using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "Catálogo de Livros";
 }
@@ -42,6 +43,15 @@
         {
             <p class="text-center">Nenhum livro cadastrado.</p>
         }
+    </div>
+    <!-- botão  paginacao-->
+    <div class="d-flex justify-content-center mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+        {
+            Display = PagedListDisplayMode.IfNeeded,
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" }
+        })
     </div>
     <!------------------------------------------------------------------------------------------------------------>
     <div id="modalProdutoDelete" class="modal" tabindex="-1">
