@@ -7,11 +7,11 @@ namespace Biblioteca.Web.Controllers;
 
 public class LivroController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<LivroController> _logger;
     private readonly GerenciadorDelivros _gerenciadorDelivros;
     private readonly string _caminhoImagem;
 
-    public LivroController(ILogger<HomeController> logger, GerenciadorDelivros gerenciadorDelivros)
+    public LivroController(ILogger<LivroController> logger, GerenciadorDelivros gerenciadorDelivros)
     {
         _logger = logger;
         _gerenciadorDelivros = gerenciadorDelivros;
