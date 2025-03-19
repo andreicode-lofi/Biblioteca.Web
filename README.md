@@ -17,6 +17,7 @@
 <h2>🆕 Atualizações</h2>
 <ul>
     <li><strong>📖 Paginação no Catálogo:</strong> Agora o catálogo de livros conta com paginação, permitindo uma melhor navegação e organização dos livros cadastrados.</li>
+    <li><strong>🔍 Campo de Busca:</strong> Implementado um campo de busca no catálogo para facilitar a localização de livros pelo título, autor ou gênero.</li>
 </ul>
 
 <h2>🚀 Como Executar</h2>
