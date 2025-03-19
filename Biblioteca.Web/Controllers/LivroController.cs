@@ -18,16 +18,28 @@ public class LivroController : Controller
     }
 
     [HttpGet]
-    public IActionResult Index(int? page)
+    public IActionResult Index(int? page, string pesquisa)
     {
         int pageSize = 6;
-        int pageNumber = (page ?? 1);
+        int pageNumber = page ?? 1;
 
-        var livros = _gerenciadorDelivros.getAll()
-        .OrderBy(l => l.Name)
-        .ToPagedList(pageNumber, pageSize);
+        var livros = _gerenciadorDelivros.getAll();
 
-        return View(livros);
+        if (!string.IsNullOrEmpty(pesquisa))
+        {
+            pesquisa = pesquisa.ToLower();
+
+            livros = livros.Where(l =>
+                l.Name.ToLower().Contains(pesquisa) ||
+                l.Autor.ToLower().Contains(pesquisa) ||
+                l.Genero.ToLower().Contains(pesquisa)
+            ).ToList();
+        }
+
+        ViewData["ConsultaPesquisa"] = pesquisa;
+
+        var livrosPaginados = livros.OrderBy(livros => livros.Name).ToPagedList(pageNumber, pageSize);
+        return View(livrosPaginados);
     }
 
     [HttpGet("Livro/Create")]

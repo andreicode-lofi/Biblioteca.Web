@@ -13,6 +13,14 @@
         <h2 class="discord-color">Catálogo de Livros</h2>
         <a class="btn btn-primary" asp-controller="Livro" asp-action="Create">Criar Livro</a>
     </div>
+<!------------------------------------campo busca------------------------------------------------------------------------>
+<form method="get" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="pesquisa" class="form-control" placeholder="Buscar livro..." value="@ViewData["ConsultaPesquisa"]">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+<!------------------------------------------------------------------------------------------------------------>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         @if (Model != null && Model.Count > 0)
@@ -46,12 +54,13 @@
     </div>
     <!-- botão  paginacao-->
     <div class="d-flex justify-content-center mt-4">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
-        {
-            Display = PagedListDisplayMode.IfNeeded,
-            LiElementClasses = new[] { "page-item" },
-            PageClasses = new[] { "page-link" }
-        })
+       @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pesquisa = ViewData["ConsultaPesquisa"] }), 
+            new PagedListRenderOptions
+            {
+                Display = PagedListDisplayMode.IfNeeded,
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" }
+            })
     </div>
     <!------------------------------------------------------------------------------------------------------------>
     <div id="modalProdutoDelete" class="modal" tabindex="-1">
