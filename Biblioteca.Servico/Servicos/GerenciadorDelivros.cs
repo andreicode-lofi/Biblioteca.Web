@@ -9,14 +9,13 @@ public class GerenciadorDelivros
 
     public GerenciadorDelivros()
     {
-        CarregarLivros();
+        carregarLivrosAsync().Wait();
     }
-
-    void CarregarLivros()
+    private async Task carregarLivrosAsync()
     {
         if (File.Exists(_caminhoDoArquivo))
         {
-            var json = File.ReadAllText(_caminhoDoArquivo);
+            var json = await File.ReadAllTextAsync(_caminhoDoArquivo);
             _livros = JsonSerializer.Deserialize<List<LivroModel>>(json) ?? new List<LivroModel>();
         }
         else
@@ -24,36 +23,31 @@ public class GerenciadorDelivros
             _livros = new List<LivroModel>(); // Garante que a lista nunca seja null
         }
     }
-
-    void SaveLivro()
+    private async Task saveLivroAsync()
     {
         var json = JsonSerializer.Serialize(_livros, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText(_caminhoDoArquivo, json);
+        await File.WriteAllTextAsync(_caminhoDoArquivo, json);
     }
-
-    public void AddLivro(LivroModel livro)
+    public async Task addLivroAsync(LivroModel livro)
     {
-        _livros.Add(livro);
-        SaveLivro();
+        _livros?.Add(livro);
+        await saveLivroAsync();
     }
-
     public List<LivroModel> getAll()
     {
         return _livros;
     }
-    public void Remove(string id)
+    public async Task RemoveAsync(string id)
     {
         _livros?.RemoveAll(l => l.Id == id);
-        SaveLivro();
+        await saveLivroAsync();
     }
-
-    public LivroModel? GetById(string id)
+    public async Task<LivroModel?> getByIdAsync(string id)
     {
-        CarregarLivros(); // Recarrega os dados do JSON antes de buscar
-        return _livros.FirstOrDefault(l => l.Id == id);
+        await carregarLivrosAsync(); // Recarrega os dados do JSON antes de buscar
+        return _livros?.FirstOrDefault(l => l.Id == id);
     }
-
-    public void Atualizar(string id, LivroModel livro)
+    public async Task updateAsync(string id, LivroModel livro)
     {
         var index = _livros.FindIndex(l => l.Id == id);
         if (index == -1)
@@ -61,7 +55,7 @@ public class GerenciadorDelivros
             throw new InvalidOperationException("Livros não encontrado");
         }
         _livros[index] = livro;
-        SaveLivro();
+        await saveLivroAsync();
     }
 }
 
