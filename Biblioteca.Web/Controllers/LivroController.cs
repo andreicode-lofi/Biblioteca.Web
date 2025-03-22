@@ -41,19 +41,17 @@ public class LivroController : Controller
         var livrosPaginados = livros.OrderBy(livros => livros.Name).ToPagedList(pageNumber, pageSize);
         return View(livrosPaginados);
     }
-
     [HttpGet("Livro/Create")]
     public IActionResult Create()
     {
         return View();
     }
-
     [HttpPost("Livro/Create")]
-    public IActionResult Create(LivroModel model, IFormFile foto)
+    public async Task<IActionResult> Create(LivroModel model, IFormFile foto)
     {
         if (foto != null)
         {
-            var caminhoImagem = GeradorImagem(foto);
+            var caminhoImagem = await GeradorImagemAsync(foto);
 
             var livro = new LivroModel
             {
@@ -66,13 +64,12 @@ public class LivroController : Controller
                 ano = model.ano
             };
 
-            _gerenciadorDelivros.AddLivro(livro);
+            await _gerenciadorDelivros.addLivroAsync(livro);
             return RedirectToAction("Index");
         }
         return View();
     }
-
-    public string GeradorImagem(IFormFile foto)
+    public async Task<string> GeradorImagemAsync(IFormFile foto)
     {
         var codigoUnico = Guid.NewGuid().ToString();
         var nomeCaminho = foto.FileName.Replace(" ", "").ToLower() + codigoUnico + ".png";
@@ -90,36 +87,33 @@ public class LivroController : Controller
         //criando um aquivo dentro de uma string, e salvando
         using (var stream = System.IO.File.Create(caminhoCompletoImagem))
         {
-            foto.CopyTo(stream);
+            await foto.CopyToAsync(stream);
         }
 
         return nomeCaminho;
     }
-
     [HttpDelete]
-    public IActionResult Delete(string id)
+    public async Task<IActionResult> Delete(string id)
     {
-        _gerenciadorDelivros.Remove(id);
+        await _gerenciadorDelivros.RemoveAsync(id);
         return RedirectToAction("Index");
     }
-
     [HttpGet]
-    public IActionResult Edit(string id)
+    public async Task<IActionResult> Edit(string id)
     {
-        var livro = _gerenciadorDelivros.GetById(id);
+        var livro = await _gerenciadorDelivros.getByIdAsync(id);
         return View(livro);
     }
-
     [HttpPost]
-    public IActionResult Edit(string id, LivroModel livro, IFormFile? foto)
+    public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto)
     {
         if (foto != null && foto.Length > 0)
         {
-            var caminhoImagem = GeradorImagem(foto);
+            var caminhoImagem = await GeradorImagemAsync(foto);
             livro.Imagem = caminhoImagem;
         }
 
-        _gerenciadorDelivros.Atualizar(id, livro);
+        await _gerenciadorDelivros.updateAsync(id, livro);
         return RedirectToAction("Index");
     }
 }
