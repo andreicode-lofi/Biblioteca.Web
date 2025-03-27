@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Biblioteca.Servico.model;
+using BCrypt.Net;
 
 namespace Biblioteca.Servico.Servicos;
 
@@ -31,6 +32,9 @@ public class GerenciadorDeUsuarios
     }
     public async Task<bool> registrarUsuarioAsync(string nome, string email, string senha)
     {
+
+        await carregarUsuariosAsync();
+
         if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
         {
             return false;// E-mail e senha são obrigatórios
@@ -46,7 +50,8 @@ public class GerenciadorDeUsuarios
             Id = Guid.NewGuid().ToString(),
             Nome = nome,
             Email = email,
-            Senha = senha//No futuro, criptografar essa senha
+            SenhaHas = BCrypt.Net.BCrypt.HashPassword(senha),//No futuro, criptografar essa senha
+            DataRegistro = DateTime.UtcNow
         };
 
         _usuarios.Add(novoUsuario);
@@ -56,6 +61,13 @@ public class GerenciadorDeUsuarios
     public async Task<UsuarioModel?> loginAsync(string email, string senha)
     {
         await carregarUsuariosAsync();
-        return _usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
+        var usuario = _usuarios.FirstOrDefault(u => u.Email == email);
+
+        if (usuario != null && BCrypt.Net.BCrypt.Verify(senha, usuario.SenhaHas))
+        {
+            return usuario;
+        }
+
+        return null;
     }
 }

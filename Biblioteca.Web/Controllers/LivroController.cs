@@ -95,7 +95,21 @@ public class LivroController : Controller
     [HttpDelete]
     public async Task<IActionResult> Delete(string id)
     {
+        var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id);
+
+        if (livroOriginal != null && !string.IsNullOrEmpty(livroOriginal.Imagem))
+        {
+            // construir o caminho da imagem
+            string caminhoImagem = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", livroOriginal.Imagem);
+
+            //Verificar se o arquivo existe
+            if (System.IO.File.Exists(caminhoImagem))
+            {
+                System.IO.File.Delete(caminhoImagem);
+            }
+        }
         await _gerenciadorDelivros.RemoveAsync(id);
+
         return RedirectToAction("Index");
     }
     [HttpGet]

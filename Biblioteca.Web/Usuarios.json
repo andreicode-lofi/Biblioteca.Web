@@ -1,8 +1,9 @@
 [
   {
-    "Id": "fcf5e0dd-86e5-441a-94e7-e47df739ef97",
+    "Id": "7018d6f5-dbdb-4aa8-845e-832d24c8c48e",
     "Nome": "Andrey",
     "Email": "andreyajj@hotmail.com",
-    "Senha": "an988687098dc"
+    "SenhaHas": "$2a$11$SrBs4NS.20rb2D2zYKh1euWypU6cnYkXdkoWEjt8HLalkDyjoD9l2",
+    "DataRegistro": "2025-03-27T18:43:06.3413246Z"
   }
 ]

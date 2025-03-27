@@ -1,11 +1,19 @@
 @model Biblioteca.Servico.model.UsuarioModel
 
 @{
+    Layout = "_LayoutDeslogado";
     ViewData["Title"] = "Login";
 }
-
+<!-- #Erro mensagen-->
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger text-center">
+        @TempData["Erro"]
+    </div>
+}
 <div class="login-page">
     <div class="container mt-5 mb-5">
+
         <div class="row justify-content-center">
             <!-- Formulário -->
             <div class="col-md-6 col-lg-4">
@@ -27,7 +35,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="Senha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="Senha" asp-for="Senha"
+                            <input type="password" class="form-control" id="Senha" asp-for="SenhaHas"
                                 placeholder="Digite sua senha" required>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Login</button>
@@ -56,7 +64,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="SenhaRegistro" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="SenhaRegistro" asp-for="Senha"
+                            <input type="password" class="form-control" id="SenhaRegistro" asp-for="SenhaHas"
                                 placeholder="Crie uma senha" required>
                         </div>
                         <button type="submit" class="btn btn-success w-100">Registrar</button>
@@ -66,30 +74,30 @@
         </div>
     </div>
 </div>
-<!-- #Erro mensagen-->
-@if (TempData["Erro"] != null)
-{
-    <div class="alert alert-danger text-center">
-        @TempData["Erro"]
-    </div>
-}
+
 <style>
     /* login-page: Usado para aplicar a imagem de fundo */
     .login-page {
         background-image: url('/images/login-Img.jpg');
-        background-size: cover;
-        background-position: center;
-        min-height: 100vh;
+
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center top;
+        min-height: 60vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 25px !important;
+
+        max-width: 80vw;
+        margin: auto;
     }
 
     .container {
-        padding-top: 2px;
-        padding-bottom: 50px;
+        padding-top: 30px;
+        padding-bottom: 30px;
         width: 100%;
-        max-width: 1320px;
+        max-width: 1309px;
         /* Limita a largura máxima */
     }
 
@@ -99,21 +107,21 @@
 
     /* Ajustando as colunas de forma mais compacta */
     .col-md-5 {
-        padding-right: 5px;
+        padding-right: 1px;
         /* Aumenta o espaço à direita da imagem */
     }
 
     .col-md-6 {
-        padding-left: 5px;
+        padding-left: 1px;
         /* Aumenta o espaço à esquerda do formulário */
     }
 
     /* Card centralizado */
     .card {
-        max-width: 450px;
+        max-width: 430px;
         width: 100%;
         margin: 0 auto;
-        background-color: rgba(52, 58, 64, 0.9) !important;
+        background-color: rgba(52, 58, 64, 0.7) !important;
         color: white;
         border-radius: 10px;
     }
@@ -124,7 +132,7 @@
     }
 
     .card h2 {
-        font-weight: 600;
+        font-weight: 900;
         text-align: center;
     }
 
@@ -135,7 +143,7 @@
 
     .card .btn {
         border-radius: 10px;
-        padding: 12px;
+        padding: 5px;
     }
 
     .card .btn-primary {

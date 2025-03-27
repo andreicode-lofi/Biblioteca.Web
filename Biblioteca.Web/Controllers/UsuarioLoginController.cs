@@ -42,15 +42,15 @@ public class UsuarioLoginController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> RegistrarUsuario(string nome, string email, string senha)
+    public async Task<IActionResult> RegistrarUsuario(string nome, string email, string senhaHas)
     {
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha) || string.IsNullOrEmpty(nome))
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senhaHas) || string.IsNullOrEmpty(nome))
         {
             TempData["Erro"] = "E-mail senha e nome são obrigatorios!";
             return RedirectToAction("Index");
         }
 
-        bool novoUsuario = await _gerenciadorDeUsuarios.registrarUsuarioAsync(nome, email, senha);
+        bool novoUsuario = await _gerenciadorDeUsuarios.registrarUsuarioAsync(nome, email, senhaHas);
 
         if (novoUsuario)
         {
