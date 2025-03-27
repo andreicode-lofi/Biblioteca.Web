@@ -107,12 +107,38 @@ public class LivroController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto)
     {
-        if (foto != null && foto.Length > 0)
+        var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id);
+
+        if (livroOriginal == null)
         {
-            var caminhoImagem = await GeradorImagemAsync(foto);
-            livro.Imagem = caminhoImagem;
+            TempData["Erro"] = "Livro não encontrado!";
+            return RedirectToAction("Index");
         }
 
+        if (foto != null && foto.Length > 0)
+        {
+            // Remove a imagem antiga antes de salvar a nova
+            if (!string.IsNullOrEmpty(livroOriginal.Imagem))
+            {
+                string caminhoAntigo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", livroOriginal.Imagem.TrimStart('/'));
+
+                if (System.IO.File.Exists(caminhoAntigo))
+                {
+                    System.IO.File.Delete(caminhoAntigo);
+                }
+
+                // Salva a nova imagem e atualiza o caminho
+                string caminhoImagem = await GeradorImagemAsync(foto);
+                livro.Imagem = $"/images/{caminhoImagem}";
+            }
+        }
+        else
+        {
+            // Mantém a imagem original se nenhuma nova for enviada
+            livro.Imagem = livroOriginal.Imagem;
+        }
+
+        //atualiza
         await _gerenciadorDelivros.updateAsync(id, livro);
         return RedirectToAction("Index");
     }

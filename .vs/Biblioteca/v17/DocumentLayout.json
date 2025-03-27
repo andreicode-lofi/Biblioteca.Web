@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\livro\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\livro\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\usuariologin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\usuariologin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\controllers\\livrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\controllers\\livrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\livro\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\livro\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 412,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,67 +38,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Livro\\Index.cshtml",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\Livro\\Index.cshtml",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Livro\\Index.cshtml",
-              "RelativeToolTip": "Biblioteca.Web\\Views\\Livro\\Index.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-07T06:54:54.414Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Biblioteca.Web\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACsAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-07T06:42:22.489Z",
+              "WhenOpened": "2025-03-26T19:05:20.089Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\_ViewImports.cshtml",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "Biblioteca.Web\\Views\\_ViewImports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "Biblioteca.Web\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwFcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-03-26T18:40:07.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\UsuarioLogin\\Index.cshtml",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\UsuarioLogin\\Index.cshtml",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\UsuarioLogin\\Index.cshtml",
+              "RelativeToolTip": "Biblioteca.Web\\Views\\UsuarioLogin\\Index.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAADwAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-07T06:42:11.356Z",
+              "WhenOpened": "2025-03-26T18:30:33.582Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LivroController.cs",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\LivroController.cs",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Controllers\\LivroController.cs",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\LivroController.cs",
-              "RelativeToolTip": "Biblioteca.Web\\Controllers\\LivroController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA1wAwAAAAAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Program.cs",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Program.cs",
+              "RelativeToolTip": "Biblioteca.Web\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T21:58:45.042Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Livro\\Create.cshtml",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\Livro\\Create.cshtml",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Livro\\Create.cshtml",
-              "RelativeToolTip": "Biblioteca.Web\\Views\\Livro\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-06T20:13:16.458Z"
+              "WhenOpened": "2025-03-26T18:27:19.763Z"
             }
           ]
         }

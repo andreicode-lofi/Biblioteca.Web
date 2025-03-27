@@ -2,7 +2,8 @@ using Biblioteca.Servico.Servicos;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<GerenciadorDelivros>();
+builder.Services.AddScoped<GerenciadorDelivros>();
+builder.Services.AddScoped<GerenciadorDeUsuarios>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -25,7 +26,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Livro}/{action=Index}/{id?}")
+    pattern: "{controller=UsuarioLogin}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 
