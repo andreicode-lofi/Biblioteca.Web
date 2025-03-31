@@ -9,5 +9,5 @@ public class UsuarioModel
     public string? Email { get; set; }
     public string? SenhaHas { get; set; }
     public DateTime DataRegistro { get; set; } = DateTime.UtcNow;
-    //public List<LivroModel>? Livros { get; set; } = new List<LivroModel>();// Lista de livros do usuário
+    public DateTime? DataAtualizacao { get; set; }
 }

@@ -20,15 +20,15 @@ public class UsuarioLoginController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(string email, string senha)
+    public async Task<IActionResult> Login(string email, string senhaHas)
     {
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senhaHas))
         {
             TempData["Erro"] = "E-mail e senha são obrigatorios!";
             return RedirectToAction("Index");
         }
 
-        UsuarioModel? usuario = await _gerenciadorDeUsuarios.loginAsync(email, senha);
+        UsuarioModel? usuario = await _gerenciadorDeUsuarios.loginAsync(email, senhaHas);
 
         if (usuario != null)
         {

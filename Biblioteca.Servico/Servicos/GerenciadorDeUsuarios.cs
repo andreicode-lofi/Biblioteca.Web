@@ -1,12 +1,18 @@
 using System.Text.Json;
 using Biblioteca.Servico.model;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Http;
+
+
+
+
 
 namespace Biblioteca.Servico.Servicos;
 
 public class GerenciadorDeUsuarios
 {
     private readonly string _caminhoDoArquivo = "Usuarios.json";
+
     private List<UsuarioModel> _usuarios = new List<UsuarioModel>();
 
     public GerenciadorDeUsuarios()
@@ -30,6 +36,20 @@ public class GerenciadorDeUsuarios
         var json = JsonSerializer.Serialize(_usuarios, new JsonSerializerOptions { WriteIndented = true });
         await File.WriteAllTextAsync(_caminhoDoArquivo, json);
     }
+
+    public async Task<UsuarioModel?> loginAsync(string email, string senha)
+    {
+        await carregarUsuariosAsync();
+        var usuario = _usuarios.FirstOrDefault(u => u.Email == email);
+
+        if (usuario != null && BCrypt.Net.BCrypt.Verify(senha, usuario.SenhaHas))
+        {
+            return usuario;
+        }
+
+        return null;
+    }
+
     public async Task<bool> registrarUsuarioAsync(string nome, string email, string senha)
     {
 
@@ -58,16 +78,66 @@ public class GerenciadorDeUsuarios
         await salvarUsuariosAsync();
         return true;
     }
-    public async Task<UsuarioModel?> loginAsync(string email, string senha)
-    {
-        await carregarUsuariosAsync();
-        var usuario = _usuarios.FirstOrDefault(u => u.Email == email);
 
-        if (usuario != null && BCrypt.Net.BCrypt.Verify(senha, usuario.SenhaHas))
+    public async Task<UsuarioModel?> getByIdAsync(string id)
+    {
+        if (string.IsNullOrEmpty(id))
         {
-            return usuario;
+            return null;
         }
 
-        return null;
+        await carregarUsuariosAsync();
+
+        var usuario = _usuarios.FirstOrDefault(u => u.Id == id);
+
+        return usuario ?? null;
+    }
+
+    public async Task<bool> updateAsync(string id, string nome, string email, string senhaHas)
+    {
+        if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email))
+        {
+            return false;
+        }
+
+        await carregarUsuariosAsync();
+
+        var usuario = await getByIdAsync(id);
+
+        usuario.Nome = nome;
+        usuario.Email = email;
+
+        if (!string.IsNullOrEmpty(senhaHas))
+        {
+            usuario.SenhaHas = BCrypt.Net.BCrypt.HashPassword(senhaHas); // Atualiza a senha somente se for fornecida
+        }
+
+        usuario.DataAtualizacao = DateTime.UtcNow;
+
+        await salvarUsuariosAsync();
+        return true;
+    }
+
+    public async Task<bool> Delete(string id)
+    {
+        if (string.IsNullOrEmpty(id))
+        {
+            return false;
+        }
+
+        await carregarUsuariosAsync();
+
+        var usuario = await getByIdAsync(id);
+
+        if (usuario == null)
+        {
+            return false; // Usuário não encontrado
+        }
+
+        _usuarios.Remove(usuario);
+
+        await salvarUsuariosAsync();
+
+        return true;
     }
 }

@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\andre\\source\\repos\\Biblioteca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\usuariologin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\usuariologin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\sessao\\gerenciadordesessao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\sessao\\gerenciadordesessao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44705F99-B90A-02BA-90E3-86123C75507F}|Biblioteca.Servico\\Biblioteca.Servico.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.servico\\servicos\\gerenciadordeusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44705F99-B90A-02BA-90E3-86123C75507F}|Biblioteca.Servico\\Biblioteca.Servico.csproj|solutionrelative:biblioteca.servico\\servicos\\gerenciadordeusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\controllers\\usuariologincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\controllers\\usuariologincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,27 +31,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\UsuarioLogin\\Index.cshtml",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\UsuarioLogin\\Index.cshtml",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\UsuarioLogin\\Index.cshtml",
-              "RelativeToolTip": "Biblioteca.Web\\Views\\UsuarioLogin\\Index.cshtml",
-              "ViewState": "AgIAABwAAAAAAAAAAAAiwCsAAABYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-27T18:27:26.463Z",
+              "Title": "GerenciadorDeSessao.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Sessao\\GerenciadorDeSessao.cs",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Sessao\\GerenciadorDeSessao.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Sessao\\GerenciadorDeSessao.cs",
+              "RelativeToolTip": "Biblioteca.Web\\Sessao\\GerenciadorDeSessao.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAcwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:17.201Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GerenciadorDeUsuarios.cs",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Servico\\Servicos\\GerenciadorDeUsuarios.cs",
-              "RelativeDocumentMoniker": "Biblioteca.Servico\\Servicos\\GerenciadorDeUsuarios.cs",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Servico\\Servicos\\GerenciadorDeUsuarios.cs",
-              "RelativeToolTip": "Biblioteca.Servico\\Servicos\\GerenciadorDeUsuarios.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAIwDQAAAAWAAAAAAAAAA==",
+              "Title": "UsuarioLoginController.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
+              "RelativeToolTip": "Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T18:03:13.483Z",
+              "WhenOpened": "2025-03-28T20:52:25.197Z",
               "EditorCaption": ""
             }
           ]

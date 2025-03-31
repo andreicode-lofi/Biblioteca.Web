@@ -4,6 +4,15 @@
     "Nome": "Andrey",
     "Email": "andreyajj@hotmail.com",
     "SenhaHas": "$2a$11$SrBs4NS.20rb2D2zYKh1euWypU6cnYkXdkoWEjt8HLalkDyjoD9l2",
-    "DataRegistro": "2025-03-27T18:43:06.3413246Z"
+    "DataRegistro": "2025-03-27T18:43:06.3413246Z",
+    "DataAtualizacao": null
+  },
+  {
+    "Id": "9bf0d410-7a9d-485a-a382-16873ed616c3",
+    "Nome": "Andrey2",
+    "Email": "andreycode@hotmail.com",
+    "SenhaHas": "$2a$11$ud1PGYLQ0slO29RFx27TuOdBdRNU8Mu7C6R/Ant3tUbR0ntAGByAG",
+    "DataRegistro": "2025-03-28T17:05:36.4317898Z",
+    "DataAtualizacao": null
   }
 ]
