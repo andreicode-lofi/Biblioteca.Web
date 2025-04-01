@@ -32,8 +32,6 @@
     <li>Compile e execute o projeto.</li>
 </ol>
 
-<h2>🔗 Contribuição</h2>
-<p>Se quiser contribuir, sinta-se à vontade para abrir um <strong>Pull Request</strong>!</p>
 
-<h2>📄 Licença</h2>
-<p>Este projeto está sob a licença MIT.</p>
+
+
