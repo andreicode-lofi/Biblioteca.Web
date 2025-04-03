@@ -14,15 +14,17 @@
     <li>Upload de imagens com <strong>pré-visualização antes do envio</strong>.</li>
 </ul>
 
-<h2>🆕 Atualizações</h2>
-<ul>
-    <li><strong>📖 Paginação no Catálogo:</strong> Agora o catálogo de livros conta com paginação, permitindo uma melhor navegação e organização dos livros cadastrados.</li>
-    <li><strong>🔍 Campo de Busca:</strong> Implementado um campo de busca no catálogo para facilitar a localização de livros pelo título, autor ou gênero.</li>
-    <li><strong>🔑 Implementação de Login:</strong> Adicionado sistema de autenticação com validação de e-mail e senha.</li>
-    <li><strong>🛡️ Senhas Criptografadas:</strong> As senhas dos usuários agora são armazenadas de forma segura utilizando criptografia.</li>
-    <li><strong>🔄 Gerenciamento de Sessão:</strong> Criada uma classe para administrar a sessão do usuário, garantindo uma experiência mais segura e persistente.</li>
-    <li><strong>🖼️ Correção no Armazenamento de Imagens:</strong> O sistema agora preserva as imagens ao editar registros, evitando perdas inesperadas.</li>
-    <li><strong>🗑️ Exclusão de Imagens Não Utilizadas:</strong> Ao atualizar ou remover um livro, a imagem antiga também é excluída, evitando acúmulo de arquivos no servidor.</li>
+<h2>🆕 Atualizações</h2>  
+<ul>  
+    <li><strong>📖 Paginação no Catálogo:</strong> Agora o catálogo de livros conta com paginação, permitindo uma melhor navegação e organização dos livros cadastrados.</li>  
+    <li><strong>🔍 Campo de Busca:</strong> Implementado um campo de busca no catálogo para facilitar a localização de livros pelo título, autor ou gênero.</li>  
+    <li><strong>🔑 Implementação de Login:</strong> Adicionado sistema de autenticação com validação de e-mail e senha.</li>  
+    <li><strong>🛡️ Senhas Criptografadas:</strong> As senhas dos usuários agora são armazenadas de forma segura utilizando criptografia.</li>  
+    <li><strong>🔄 Gerenciamento de Sessão:</strong> Criada uma classe para administrar a sessão do usuário, garantindo uma experiência mais segura e persistente.</li>  
+    <li><strong>🖼️ Correção no Armazenamento de Imagens:</strong> O sistema agora preserva as imagens ao editar registros, evitando perdas inesperadas.</li>  
+    <li><strong>🗑️ Exclusão de Imagens Não Utilizadas:</strong> Ao atualizar ou remover um livro, a imagem antiga também é excluída, evitando acúmulo de arquivos no servidor.</li>  
+    <li><strong>⭐ Sistema de Avaliação:</strong> Agora é possível avaliar os livros cadastrados, permitindo que os usuários atribuam uma nota de 1 a 5 estrelas.</li>  
+    <li><strong>📌 Trechos Favoritos:</strong> Implementada a funcionalidade para salvar trechos favoritos dos livros lidos, possibilitando que os usuários registrem e revisitem suas partes preferidas.</li>  
 </ul>
 
 <h2>🚀 Como Executar</h2>
