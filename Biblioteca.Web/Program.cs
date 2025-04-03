@@ -30,11 +30,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseRouting();
 
-
 app.UseSession();// Habilitando o uso de sess�es
+
 app.UseAuthorization();
 
 app.MapStaticAssets();

@@ -26,11 +26,31 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Livro"
-                                asp-action="Index">catálogo livros</a>
+                                asp-action="Index">Catálogo Livros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Livro" asp-action="Create">criar
-                                livro</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Livro" asp-action="Create">Criar
+                                Livro</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <!-- Dropdown do usuário -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Opções
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Usuario"
+                                        asp-action="Perfil">Meu Perfil</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Livro"
+                                        asp-action="MeusLivros">Meus Livros</a></li>
+                            </ul>
+                        </li>
+                        <!-- Botão de Logout -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="UsuarioLogin"
+                                asp-action="Sair">Sair</a>
                         </li>
                     </ul>
                 </div>

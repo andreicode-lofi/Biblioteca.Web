@@ -7,71 +7,142 @@
         <input type="hidden" asp-for="Id" /> <!-- Campo oculto para o ID do livro -->
 
         <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
+            <div class="col-md-10">
 
-                <!-- Card para imagem -->
-                <div class="card mb-4" style="padding: 10px;">
-                    <img id="imagePreview" class="card-img-top" style="width: 100%; height: 250px; object-fit: cover;"
-                        src="@(string.IsNullOrEmpty(Model.Imagem) ? "" : Url.Content("~/images/" + Model.Imagem))">
-                </div>
+                <div class="row g-4">
+                    <!-- Adicionado espaçamento entre colunas -->
+                    <!-- Coluna Esquerda -->
+                    <div class="col-md-6">
 
-                <!-- Campo Nome do Livro -->
-                <div class="form-group text-start mb-3">
-                    <label for="Nome" class="form-label">Nome do Livro</label>
-                    <input type="text" class="form-control" id="Nome" asp-for="Name" required>
-                </div>
+                        <!-- Card para imagem -->
+                        <div class="card mb-3 p-3">
+                            <img id="imagePreview" class="card-img-top" style="width: 100%; height: 250px; object-fit: cover;"
+                                 src="@(string.IsNullOrEmpty(Model.Imagem) ? "" : Url.Content("~/images/" + Model.Imagem))">
+                            <div class="mt-2">
+                                <label for="Imagem" class="form-label">Imagem do Livro</label>
+                                <input type="file" class="form-control" id="imageInput" name="foto" onchange="previewImage(event)"
+                                       accept="image/*">
+                            </div>
+                        </div>
 
-                <!-- Campo Autor -->
-                <div class="form-group text-start mb-3">
-                    <label for="Autor" class="form-label">Autor</label>
-                    <input type="text" class="form-control" id="Autor" asp-for="Autor" required>
-                </div>
+                        <!-- Nome do Livro -->
+                        <div class="form-group text-start mb-3">
+                            <label for="Nome" class="form-label">Nome do Livro</label>
+                            <input type="text" class="form-control form-control-lg" id="Nome" asp-for="Name"
+                                   placeholder="Digite o nome do livro" required>
+                        </div>
 
-                <!-- Campo Gênero -->
-                <div class="form-group text-start mb-3">
-                    <label for="Genero" class="form-label">Gênero</label>
-                    <input type="text" class="form-control" id="Genero" asp-for="Genero" required>
-                </div>
+                        <!-- Autor -->
+                        <div class="form-group text-start mb-3">
+                            <label for="Autor" class="form-label">Autor</label>
+                            <input type="text" class="form-control form-control-md" id="Autor" asp-for="Autor"
+                                   placeholder="Digite o nome do autor" required>
+                        </div>
 
-                <!-- Campo Idioma -->
-                <div class="form-group text-start mb-3">
-                    <label for="Idioma" class="form-label">Idioma</label>
-                    <input type="text" class="form-control" id="Idioma" asp-for="Idioma" required>
-                </div>
+                        <!-- Gênero -->
+                        <div class="form-group text-start mb-3">
+                            <label for="Genero" class="form-label">Gênero</label>
+                            <input type="text" class="form-control form-control-md" id="Genero" asp-for="Genero"
+                                   placeholder="Digite o gênero do livro" required>
+                        </div>
 
-                <!-- Campo Ano -->
-                <div class="form-group text-start mb-3">
-                    <label for="ano" class="form-label">Ano de Publicação</label>
-                    <input type="number" class="form-control" id="ano" asp-for="ano" required>
-                </div>
+                        <!-- Idioma -->
+                        <div class="form-group text-start mb-3">
+                            <label for="Idioma" class="form-label">Idioma</label>
+                            <input type="text" class="form-control form-control-md" id="Idioma" asp-for="Idioma"
+                                   placeholder="Digite o idioma do livro" required>
+                        </div>
 
-                <!-- Checkbox Livro Finalizado -->
-                <div class="form-check mb-4">
-                    <input type="checkbox" class="form-check-input" id="LivroFinalizado" asp-for="LivroFinalizado">
-                    <label class="form-check-label" for="LivroFinalizado">Livro Finalizado</label>
-                </div>
+                        <!-- Ano -->
+                        <div class="form-group text-start mb-3">
+                            <label for="ano" class="form-label">Ano de Publicação</label>
+                            <input type="number" class="form-control form-control-sm" id="ano" asp-for="ano"
+                                   placeholder="Digite o ano de publicação" required>
+                        </div>
 
-                <!-- Campo de Imagem -->
-                <div class="form-group text-start mb-3">
-                    <label for="Imagem" class="form-label">Imagem do Livro</label>
-                    <input type="file" class="form-control" id="imageInput" name="foto" onchange="previewImage(event)"
-                        accept="image/*">
+                        <!-- Livro Finalizado -->
+                        <div class="form-check mb-4">
+                            <input type="checkbox" class="form-check-input" id="LivroFinalizado" asp-for="LivroFinalizado">
+                            <label class="form-check-label" for="LivroFinalizado">Livro Finalizado</label>
+                        </div>
+
+                    </div>
+
+                    <!-- Coluna Direita -->
+                    <div class="col-md-6">
+
+                        <!-- Sinopse -->
+                        <div class="form-group text-start mb-3">
+                            <label for="Sinopse" class="form-label">Sinopse</label>
+                            <textarea class="form-control form-control-lg" id="Sinopse" asp-for="Sinopese"
+                                      placeholder="Escreva um resumo do livro"></textarea>
+                        </div>
+
+                        <!-- Comentários -->
+                        <div class="form-group text-start mb-3">
+                            <label for="Comentarios" class="form-label">Comentários</label>
+                            <textarea class="form-control form-control-md" id="Comentarios" asp-for="Comentarios"
+                                      placeholder="Adicione comentários sobre o livro"></textarea>
+                        </div>
+
+                        <!-- Avaliação -->
+                        <div class="form-group text-start mb-3">
+                            <label for="Avaliacao" class="form-label">Avaliação</label>
+                            <select class="form-control form-control-md" id="Avaliacao" asp-for="Avaliacao">
+                                <option value="">Selecione uma nota</option>
+                                <option value="1">⭐</option>
+                                <option value="2">⭐⭐</option>
+                                <option value="3">⭐⭐⭐</option>
+                                <option value="4">⭐⭐⭐⭐</option>
+                                <option value="5">⭐⭐⭐⭐⭐</option>
+                            </select>
+                        </div>
+
+                        <!-- Número de Páginas (agora texto) -->
+                        <div class="form-group text-start mb-3">
+                            <label for="NumeroPaginas" class="form-label">Número de Páginas</label>
+                            <input type="text" class="form-control form-control-sm" id="NumeroPaginas" asp-for="NumeroPaginas"
+                                   placeholder="Digite o número de páginas">
+                        </div>
+
+                        <!-- Trechos Favoritos -->
+                        <div class="form-group text-start mb-3">
+                            <label for="TrechosFavoritos" class="form-label">Trechos Favoritos</label>
+                            <div id="trechosContainer">
+                                @if (Model.TrechosFavoritos != null)
+                                {
+                                    for (int i = 0; i < Model.TrechosFavoritos.Count; i++)
+                                    {
+                                        <div class="input-group mb-2 trecho-item">
+                                            <input type="text" class="form-control" name="TrechosFavoritos[]" value="@Model.TrechosFavoritos[i]" placeholder="Adicione um trecho">
+                                            <button type="button" class="btn btn-danger" onclick="removerTrecho(this)">X</button>
+                                        </div>
+                                    }
+                                }
+                               <!-- <div class="input-group mb-2 trecho-item">
+                                    <input type="text" class="form-control" name="TrechosFavoritos[]" placeholder="Adicione um trecho">
+                                    <button type="button" class="btn btn-danger" onclick="removerTrecho(this)">Remover</button>
+                                </div>-->
+                            </div>
+                            <button type="button" class="btn btn-secondary mt-2" onclick="adicionarTrecho()">Adicionar Outro Trecho</button>
+                        </div>
+
+                    </div>
                 </div>
 
                 <!-- Botões -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-4">
                     <button type="submit" class="btn btn-primary w-48">Salvar Alterações</button>
                     <a asp-controller="Livro" asp-action="Index" class="btn btn-secondary w-48">Voltar</a>
                 </div>
 
             </div>
         </div>
-
     </form>
 </div>
 
 <script>
-    // Função para exibir a imagem prévia ao selecionar um novo arquivo
+    // Pré-visualização da imagem antes de enviar a requisição
     function previewImage(event) {
         var reader = new FileReader();
         reader.onload = function () {
@@ -81,5 +152,34 @@
         if (event.target.files.length > 0) {
             reader.readAsDataURL(event.target.files[0]);
         }
+    }
+
+    // Add trechos 
+       function adicionarTrecho() {
+        var container = document.getElementById('trechosContainer');
+        var trechoDiv = document.createElement("div");
+        trechoDiv.className = "input-group mb-2 trecho-item";
+
+        var novoInput = document.createElement("input");
+        novoInput.type = "text";
+        novoInput.name = "TrechosFavoritos[]";
+        novoInput.className = "form-control";
+        novoInput.placeholder = "Adicione um trecho";
+
+        var botaoRemover = document.createElement("button");
+        botaoRemover.type = "button";
+        botaoRemover.className = "btn btn-danger";
+        botaoRemover.textContent = "X";
+        botaoRemover.onclick = function() {
+            removerTrecho(botaoRemover);
+        };
+
+        trechoDiv.appendChild(novoInput);
+        trechoDiv.appendChild(botaoRemover);
+        container.appendChild(trechoDiv);
+    }
+
+    function removerTrecho(botao) {
+        botao.parentElement.remove();
     }
 </script>

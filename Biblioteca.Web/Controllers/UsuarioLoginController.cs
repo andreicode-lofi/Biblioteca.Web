@@ -1,5 +1,6 @@
 using Biblioteca.Servico.model;
 using Biblioteca.Servico.Servicos;
+using Biblioteca.Web.Sessao;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Biblioteca.Web.Controllers;
@@ -7,15 +8,22 @@ namespace Biblioteca.Web.Controllers;
 public class UsuarioLoginController : Controller
 {
     private readonly GerenciadorDeUsuarios _gerenciadorDeUsuarios;
+    private readonly GerenciadorDeSessao _sessao;
 
-    public UsuarioLoginController(GerenciadorDeUsuarios gerenciadorDeUsuarios)
+    public UsuarioLoginController(GerenciadorDeUsuarios gerenciadorDeUsuarios, GerenciadorDeSessao sessao)
     {
         _gerenciadorDeUsuarios = gerenciadorDeUsuarios;
+        _sessao = sessao;
     }
 
     [HttpGet]
     public IActionResult Index()
     {
+        //Se usuario estiver loogado, redirecionar para home
+        if (_sessao.BuscarSessaoUsuario() != null)
+        {
+            return RedirectToAction("Index", "Livro");
+        }
         return View();
     }
 
@@ -32,6 +40,7 @@ public class UsuarioLoginController : Controller
 
         if (usuario != null)
         {
+            _sessao.CriarSessaoDoUsuario(usuario);
             return RedirectToAction("Index", "Livro");
         }
         else
@@ -61,6 +70,15 @@ public class UsuarioLoginController : Controller
             TempData["Erro"] = "Erro ao registrar sua conta!";
             return RedirectToAction("Index");
         }
+    }
+
+    public IActionResult Sair()
+    {
+
+
+        _sessao.RemoveSessaoUsuario();
+
+        return RedirectToAction("Index", "UsuarioLogin");
     }
 }
 

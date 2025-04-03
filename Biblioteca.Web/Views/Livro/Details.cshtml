@@ -1,0 +1,146 @@
+@model Biblioteca.Servico.model.LivroModel
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Detalhes do Livro</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+
+            <div class="row g-4">
+
+                <!-- Coluna Esquerda -->
+                <div class="col-md-6">
+                    <!-- Card para imagem -->
+                    <div class="card mb-3 p-3">
+                        <img id="imagePreview" class="card-img-top"
+                            style="width: 100%; height: 250px; object-fit: cover;"
+                            src="@(string.IsNullOrEmpty(Model.Imagem) ? "" : Url.Content("~/images/" + Model.Imagem))" />
+                    </div>
+
+                    <!-- Nome do Livro -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Nome do Livro</label>
+                        <p class="form-control-static">@Model.Name</p>
+                    </div>
+
+                    <!-- Autor -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Autor</label>
+                        <p class="form-control-static">@Model.Autor</p>
+                    </div>
+
+                    <!-- Gênero -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Gênero</label>
+                        <p class="form-control-static">@Model.Genero</p>
+                    </div>
+
+                    <!-- Idioma -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Idioma</label>
+                        <p class="form-control-static">@Model.Idioma</p>
+                    </div>
+
+                    <!-- Ano -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Ano de Publicação</label>
+                        <p class="form-control-static">@Model.ano</p>
+                    </div>
+
+                    <!-- Livro Finalizado -->
+                    <div class="form-check mb-3">
+                        <label class="form-check-label discord-color">
+                            @if (Model.LivroFinalizado)
+                            {
+                                <span>Livro Finalizado</span>
+                            }
+                            else
+                            {
+                                <span>Livro Não Finalizado</span>
+                            }
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita -->
+                <div class="col-md-6">
+                    <!-- Sinopse -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Sinopse</label>
+                        <p class="form-control-static">@Model.Sinopese</p>
+                    </div>
+
+                    <!-- Comentários -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Comentários</label>
+                        <p class="form-control-static">@Model.Comentarios</p>
+                    </div>
+
+                    <!-- Avaliação -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Avaliação</label>
+                        <p class="form-control-static">
+                            @switch (Model.Avaliacao)
+                            {
+                                case "1":
+                                    <span>⭐</span>
+                                    ; break;
+                                case "2":
+
+                                    <span>⭐⭐</span>
+                                    ; break;
+                                case "3":
+
+                                    <span>⭐⭐⭐</span>
+                                    ; break;
+                                case "4":
+
+                                    <span>⭐⭐⭐⭐</span>
+                                    ; break;
+                                case "5":
+
+                                    <span>⭐⭐⭐⭐⭐</span>
+                                    ; break;
+                                default:
+
+                                    <span>Não Avaliado</span>
+                                    ; break;
+                            }
+                        </p>
+                    </div>
+
+                    <!-- Número de Páginas -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Número de Páginas</label>
+                        <p class="form-control-static">@Model.NumeroPaginas</p>
+                    </div>
+
+                    <!-- Trechos Favoritos -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Trechos Favoritos</label>
+                        <ul class="list-group">
+                            @if (Model.TrechosFavoritos != null && Model.TrechosFavoritos.Any())
+                            {
+                                foreach (var trecho in Model.TrechosFavoritos)
+                                {
+                                    <li class="list-group-item">@trecho</li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="list-group-item">Nenhum trecho favorito adicionado.</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Botões -->
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-controller="Livro" asp-action="Index" class="btn btn-secondary w-48">Voltar</a>
+            </div>
+
+        </div>
+    </div>
+</div>

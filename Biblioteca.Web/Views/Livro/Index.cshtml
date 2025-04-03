@@ -5,7 +5,7 @@
 }
 
 <div class="banner text-center text-white d-flex align-items-center justify-content-center">
-        <h1>Biblioteca Web.</h1>
+    <h1>Biblioteca Web.</h1>
 </div>
 
 <div class="container mt-5 mb-5">
@@ -13,14 +13,15 @@
         <h2 class="discord-color">Catálogo de Livros</h2>
         <a class="btn btn-primary" asp-controller="Livro" asp-action="Create">Criar Livro</a>
     </div>
-<!------------------------------------campo busca------------------------------------------------------------------------>
-<form method="get" class="mb-4">
-    <div class="input-group">
-        <input type="text" name="pesquisa" class="form-control" placeholder="Buscar livro..." value="@ViewData["ConsultaPesquisa"]">
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </div>
-</form>
-<!------------------------------------------------------------------------------------------------------------>
+
+    <!-- Campo de busca -->
+    <form method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="pesquisa" class="form-control" placeholder="Buscar livro..."
+                value="@ViewData["ConsultaPesquisa"]">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         @if (Model != null && Model.Count > 0)
@@ -29,19 +30,40 @@
             {
                 <div class="col">
                     <div class="card h-100 shadow-sm">
-                        <img src="~/images/@item.Imagem" class="card-img-top" alt="Imagem do Livro" style="width: 100%; height: 250px; object-fit: contain;">
+                        <img src="~/images/@item.Imagem" class="card-img-top" alt="Imagem do Livro"
+                            style="width: 100%; height: 250px; object-fit: contain;">
                         <div class="card-body">
                             <h4 class="card-title discord-color">@item.Name</h4>
                             <p class="card-text"><strong style="color: white;">Autor:</strong> @item.Autor</p>
-                            <p class="card-text"><strong style="color: white;">Genero:</strong> @item.Genero</p>
+                            <p class="card-text"><strong style="color: white;">Gênero:</strong> @item.Genero</p>
                             <p class="card-text"><strong style="color: white;">Idioma:</strong> @item.Idioma</p>
                             <p class="card-text"><strong style="color: white;">Ano:</strong> @item.ano</p>
-                            <p class="card-text"><strong style="color: white;">Status:</strong> @(item.LivroFinalizado ? "Finalizado" : "Em progresso")</p>
+                            <p class="card-text"><strong style="color: white;">Status:</strong> @(item.LivroFinalizado ?
+                                                        "Finalizado" : "Em progresso")</p>
+
+                    <!-- Avaliação com estrelas -->
+                    <p class="card-text">
+                        <strong style="color: white;">Avaliação:</strong>
+                        @if (!string.IsNullOrEmpty(item.Avaliacao) && int.TryParse(item.Avaliacao, out int nota))
+                                {
+                                    @(new string('⭐', nota))
+                                }
+                                else
+                                {
+                                    <span>N/A</span>
+                                }
+                            </p>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-dark">
-                            <a class="btn btn-primary" asp-controller="Livro" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" asp-controller="Livro" asp-action="Details"
+                                    asp-route-id="@item.Id">Detalhes</a>
+                                <a class="btn btn-primary" asp-controller="Livro" asp-action="Edit"
+                                    asp-route-id="@item.Id">Editar</a>
+                            </div>
                             <a class="btn btn-danger btn-produto-delete" data-toggle="modal" data-target="#modalProdutoDelete"
-                               data-id="@item.Id" data-titulo="@item.Name" data-url="@Url.Action("Delete", "Livro")">Excluir</a>
+                                data-id="@item.Id" data-titulo="@item.Name"
+                                data-url="@Url.Action("Delete", "Livro")">Excluir</a>
                         </div>
                     </div>
                 </div>
@@ -52,17 +74,19 @@
             <p class="text-center">Nenhum livro cadastrado.</p>
         }
     </div>
-    <!-- botão  paginacao-->
+
+    <!-- Paginação -->
     <div class="d-flex justify-content-center mt-4">
-       @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pesquisa = ViewData["ConsultaPesquisa"] }), 
-            new PagedListRenderOptions
-            {
-                Display = PagedListDisplayMode.IfNeeded,
-                LiElementClasses = new[] { "page-item" },
-                PageClasses = new[] { "page-link" }
-            })
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pesquisa = ViewData["ConsultaPesquisa"] }),
+        new PagedListRenderOptions
+        {
+            Display = PagedListDisplayMode.IfNeeded,
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" }
+        })
     </div>
-    <!------------------------------------------------------------------------------------------------------------>
+
+    <!-- Modal de exclusão -->
     <div id="modalProdutoDelete" class="modal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -74,11 +98,10 @@
                     <p>Tem certeza de que deseja excluir o livro: <span id="titulo"></span>?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button id="confirmDelete" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="confirmDelete" type="button" class="btn btn-danger">Excluir</button>
                 </div>
             </div>
         </div>
     </div>
-<!----------------------------------------------MODAL delete-------------------------------------------------------------->
 </div>

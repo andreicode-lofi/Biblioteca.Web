@@ -41,11 +41,13 @@ public class LivroController : Controller
         var livrosPaginados = livros.OrderBy(livros => livros.Name).ToPagedList(pageNumber, pageSize);
         return View(livrosPaginados);
     }
+
     [HttpGet("Livro/Create")]
     public IActionResult Create()
     {
         return View();
     }
+
     [HttpPost("Livro/Create")]
     public async Task<IActionResult> Create(LivroModel model, IFormFile foto)
     {
@@ -61,7 +63,12 @@ public class LivroController : Controller
                 Idioma = model.Idioma,
                 LivroFinalizado = model.LivroFinalizado,
                 Imagem = caminhoImagem,
-                ano = model.ano
+                ano = model.ano,
+                Sinopese = model.Sinopese,
+                Comentarios = model.Comentarios,
+                Avaliacao = model.Avaliacao,
+                NumeroPaginas = model.NumeroPaginas,
+                TrechosFavoritos = model.TrechosFavoritos
             };
 
             await _gerenciadorDelivros.addLivroAsync(livro);
@@ -69,6 +76,7 @@ public class LivroController : Controller
         }
         return View();
     }
+
     public async Task<string> GeradorImagemAsync(IFormFile foto)
     {
         var codigoUnico = Guid.NewGuid().ToString();
@@ -92,6 +100,7 @@ public class LivroController : Controller
 
         return nomeCaminho;
     }
+
     [HttpDelete]
     public async Task<IActionResult> Delete(string id)
     {
@@ -112,14 +121,23 @@ public class LivroController : Controller
 
         return RedirectToAction("Index");
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(string id)
+    {
+        var livro = await _gerenciadorDelivros.getByIdAsync(id);
+        return View(livro);
+    }
+
     [HttpGet]
     public async Task<IActionResult> Edit(string id)
     {
         var livro = await _gerenciadorDelivros.getByIdAsync(id);
         return View(livro);
     }
+
     [HttpPost]
-    public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto)
+    public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto, List<string> trechosFavoritos)
     {
         var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id);
 
@@ -128,12 +146,13 @@ public class LivroController : Controller
             TempData["Erro"] = "Livro não encontrado!";
             return RedirectToAction("Index");
         }
-
+        //---------------------------------------------------
         if (foto != null && foto.Length > 0)
         {
             // Remove a imagem antiga antes de salvar a nova
             if (!string.IsNullOrEmpty(livroOriginal.Imagem))
             {
+                // construir o caminho da imagem
                 string caminhoAntigo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", livroOriginal.Imagem.TrimStart('/'));
 
                 if (System.IO.File.Exists(caminhoAntigo))
@@ -148,8 +167,18 @@ public class LivroController : Controller
         }
         else
         {
-            // Mantém a imagem original se nenhuma nova for enviada
             livro.Imagem = livroOriginal.Imagem;
+        }
+
+        // Atualização dos trechos favoritos
+        //---------------------------------------------------
+        if (trechosFavoritos != null)
+        {
+            livro.TrechosFavoritos = trechosFavoritos.Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
+        }
+        else
+        {
+            livro.TrechosFavoritos = new List<string>();
         }
 
         //atualiza

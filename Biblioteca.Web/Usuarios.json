@@ -14,5 +14,13 @@
     "SenhaHas": "$2a$11$ud1PGYLQ0slO29RFx27TuOdBdRNU8Mu7C6R/Ant3tUbR0ntAGByAG",
     "DataRegistro": "2025-03-28T17:05:36.4317898Z",
     "DataAtualizacao": null
+  },
+  {
+    "Id": "b0b01e3d-3806-4c7d-8214-8407788d9d77",
+    "Nome": "Teste",
+    "Email": "andreyaj@hotmail.com",
+    "SenhaHas": "$2a$11$GlNbfMhwgCH9I7/QIcs1ieFLODupzaTkh7Kdxl9PJjd3xEtxQgrRS",
+    "DataRegistro": "2025-04-01T04:56:23.3955159Z",
+    "DataAtualizacao": null
   }
 ]

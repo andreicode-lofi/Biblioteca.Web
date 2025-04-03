@@ -17,18 +17,22 @@ namespace Biblioteca.Web.Sessao
             _httpContext.HttpContext?.Session.SetString("sessaoUsuarioLogado", valor); // Armazenando na sessão como string
         }
 
-        public async Task<UsuarioModel> BuscarSessaoUsuario()
+
+        public UsuarioModel? BuscarSessaoUsuario()
         {
             string? sessaoUsuario = _httpContext.HttpContext?.Session.GetString("sessaoUsuarioLogado");
 
-            return string.IsNullOrEmpty(sessaoUsuario)
-                ? null
-                : JsonConvert.DeserializeObject<UsuarioModel>(sessaoUsuario);
+            if (string.IsNullOrEmpty(sessaoUsuario)) return null;
+
+            return JsonConvert.DeserializeObject<UsuarioModel>(sessaoUsuario);
         }
 
         public void RemoveSessaoUsuario()
         {
-            _httpContext.HttpContext?.Session.Remove("sessaoUsuarioLogado");
+
+            //_httpContext.HttpContext?.Session.Remove("sessaoUsuarioLogado");
+            _httpContext.HttpContext?.Session.Clear(); // Remove todos os dados da sessão
+            _httpContext.HttpContext?.Response.Cookies.Delete(".AspNetCore.Session");
         }
     }
 }
