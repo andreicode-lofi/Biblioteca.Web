@@ -119,10 +119,6 @@
                                         </div>
                                     }
                                 }
-                               <!-- <div class="input-group mb-2 trecho-item">
-                                    <input type="text" class="form-control" name="TrechosFavoritos[]" placeholder="Adicione um trecho">
-                                    <button type="button" class="btn btn-danger" onclick="removerTrecho(this)">Remover</button>
-                                </div>-->
                             </div>
                             <button type="button" class="btn btn-secondary mt-2" onclick="adicionarTrecho()">Adicionar Outro Trecho</button>
                         </div>
@@ -141,45 +137,6 @@
     </form>
 </div>
 
-<script>
-    // Pré-visualização da imagem antes de enviar a requisição
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function () {
-            var output = document.getElementById('imagePreview');
-            output.src = reader.result;
-        }
-        if (event.target.files.length > 0) {
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    }
-
-    // Add trechos 
-       function adicionarTrecho() {
-        var container = document.getElementById('trechosContainer');
-        var trechoDiv = document.createElement("div");
-        trechoDiv.className = "input-group mb-2 trecho-item";
-
-        var novoInput = document.createElement("input");
-        novoInput.type = "text";
-        novoInput.name = "TrechosFavoritos[]";
-        novoInput.className = "form-control";
-        novoInput.placeholder = "Adicione um trecho";
-
-        var botaoRemover = document.createElement("button");
-        botaoRemover.type = "button";
-        botaoRemover.className = "btn btn-danger";
-        botaoRemover.textContent = "X";
-        botaoRemover.onclick = function() {
-            removerTrecho(botaoRemover);
-        };
-
-        trechoDiv.appendChild(novoInput);
-        trechoDiv.appendChild(botaoRemover);
-        container.appendChild(trechoDiv);
-    }
-
-    function removerTrecho(botao) {
-        botao.parentElement.remove();
-    }
-</script>
+@section Scripts {
+    <script src="~/js/livro-edit.js"></script>
+}

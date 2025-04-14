@@ -3,7 +3,7 @@ using Biblioteca.Web.Sessao;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurando os serviços sessço----------------------------------
+// Configurando os serviços sessço==================================================
 builder.Services.AddDistributedMemoryCache(); // Necessario para sessçes em memoria
 builder.Services.AddSession(options =>
 {
@@ -12,12 +12,13 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddHttpContextAccessor(); // Para usar IHttpContextAccessor
-//-----------------------------------------------------------------------------
-
+//=================================================================================
+//=================================================================================
 builder.Services.AddScoped<GerenciadorDeSessao>();
 builder.Services.AddScoped<GerenciadorDelivros>();
 builder.Services.AddScoped<GerenciadorDeUsuarios>();
-// Add services to the container.
+builder.Services.AddSingleton<BackupLivro>();
+// Add services to the container.===================================================
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -47,4 +48,11 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 
+//Execute backuo====================================================================
+using (var escopo = app.Services.CreateScope())
+{
+    var backupService = escopo.ServiceProvider.GetRequiredService<BackupLivro>();
+    backupService.CriarBackup();
+}
+//====================================================================================
 app.Run();

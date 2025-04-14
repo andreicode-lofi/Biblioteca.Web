@@ -84,7 +84,7 @@ public class LivroController : Controller
         //criando pasta imagem em wwwroot
         string caminhoSalvarImagem = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
 
-        //Se não existi a pasta images, entre no bloco if e crie uma 
+
         if (!Directory.Exists(caminhoSalvarImagem))
         {
             Directory.CreateDirectory(caminhoSalvarImagem);
@@ -108,7 +108,6 @@ public class LivroController : Controller
 
         if (livroOriginal != null && !string.IsNullOrEmpty(livroOriginal.Imagem))
         {
-            // construir o caminho da imagem
             string caminhoImagem = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", livroOriginal.Imagem);
 
             //Verificar se o arquivo existe
@@ -149,7 +148,7 @@ public class LivroController : Controller
         //---------------------------------------------------
         if (foto != null && foto.Length > 0)
         {
-            // Remove a imagem antiga antes de salvar a nova
+
             if (!string.IsNullOrEmpty(livroOriginal.Imagem))
             {
                 // construir o caminho da imagem
@@ -160,7 +159,7 @@ public class LivroController : Controller
                     System.IO.File.Delete(caminhoAntigo);
                 }
 
-                // Salva a nova imagem e atualiza o caminho
+
                 string caminhoImagem = await GeradorImagemAsync(foto);
                 livro.Imagem = $"/images/{caminhoImagem}";
             }
