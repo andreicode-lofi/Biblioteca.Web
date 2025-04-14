@@ -24,7 +24,8 @@
     <li><strong>🖼️ Correção no Armazenamento de Imagens:</strong> O sistema agora preserva as imagens ao editar registros, evitando perdas inesperadas.</li>  
     <li><strong>🗑️ Exclusão de Imagens Não Utilizadas:</strong> Ao atualizar ou remover um livro, a imagem antiga também é excluída, evitando acúmulo de arquivos no servidor.</li>  
     <li><strong>⭐ Sistema de Avaliação:</strong> Agora é possível avaliar os livros cadastrados, permitindo que os usuários atribuam uma nota de 1 a 5 estrelas.</li>  
-    <li><strong>📌 Trechos Favoritos:</strong> Implementada a funcionalidade para salvar trechos favoritos dos livros lidos, possibilitando que os usuários registrem e revisitem suas partes preferidas.</li>  
+    <li><strong>📌 Trechos Favoritos:</strong> Implementada a funcionalidade para salvar trechos favoritos dos livros lidos, possibilitando que os usuários registrem e revisitem suas partes preferidas.</li>
+    <li><strong>💾 Backup Automatizado:</strong> Implementada uma funcionalidade que cria automaticamente arquivos de backup dos dados registrados em JSON sempre que o sistema é iniciado. Além disso, foi adicionado um controle para manteno máximo cinco backups, evitando acúmulo excessivo de arquivos no servidor.</li>
 </ul>
 
 <h2>🚀 Como Executar</h2>
