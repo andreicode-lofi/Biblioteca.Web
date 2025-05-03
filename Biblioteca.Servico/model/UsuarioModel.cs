@@ -10,4 +10,7 @@ public class UsuarioModel
     public string? SenhaHas { get; set; }
     public DateTime DataRegistro { get; set; } = DateTime.UtcNow;
     public DateTime? DataAtualizacao { get; set; }
+
+    public string? TokenRedefinicao { get; set; }
+    public DateTime? TokenExperiracao { get; set; }
 }

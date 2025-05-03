@@ -32,4 +32,15 @@ public class BackupLivro
             }
         }
     }
+
+    public bool RestaurarBackup(string nomeArquivoBackup)
+    {
+        string caminhoBackup = Path.Combine(_diretorioBackup, nomeArquivoBackup);
+
+        if (!File.Exists(caminhoBackup))
+            return false;
+
+        File.Copy(caminhoBackup, _caminhoArquivoOriginal, overwrite: true);
+        return true;
+    }
 }

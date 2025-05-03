@@ -81,9 +81,8 @@ public class LivroController : Controller
     {
         var codigoUnico = Guid.NewGuid().ToString();
         var nomeCaminho = foto.FileName.Replace(" ", "").ToLower() + codigoUnico + ".png";
-        //criando pasta imagem em wwwroot
-        string caminhoSalvarImagem = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
 
+        string caminhoSalvarImagem = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
 
         if (!Directory.Exists(caminhoSalvarImagem))
         {
@@ -92,7 +91,6 @@ public class LivroController : Controller
 
         string caminhoCompletoImagem = Path.Combine(caminhoSalvarImagem, nomeCaminho);
 
-        //criando um aquivo dentro de uma string, e salvando
         using (var stream = System.IO.File.Create(caminhoCompletoImagem))
         {
             await foto.CopyToAsync(stream);
@@ -148,28 +146,27 @@ public class LivroController : Controller
         //---------------------------------------------------
         if (foto != null && foto.Length > 0)
         {
-
             if (!string.IsNullOrEmpty(livroOriginal.Imagem))
             {
-                // construir o caminho da imagem
                 string caminhoAntigo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", livroOriginal.Imagem.TrimStart('/'));
 
                 if (System.IO.File.Exists(caminhoAntigo))
                 {
                     System.IO.File.Delete(caminhoAntigo);
                 }
-
-
-                string caminhoImagem = await GeradorImagemAsync(foto);
-                livro.Imagem = $"/images/{caminhoImagem}";
             }
+
+            string caminhoImagem = await GeradorImagemAsync(foto);
+            livro.Imagem = caminhoImagem;
         }
         else
         {
-            livro.Imagem = livroOriginal.Imagem;
+            livro.Imagem = Path.GetFileName(livroOriginal.Imagem);
         }
 
-        // Atualização dos trechos favoritos
+
+
+        // Atualização trechos favoritos
         //---------------------------------------------------
         if (trechosFavoritos != null)
         {

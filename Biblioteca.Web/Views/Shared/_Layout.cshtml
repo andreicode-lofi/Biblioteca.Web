@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Biblioteca.Web</title>
+    <title>@ViewData["Title"] - LoreKeeper</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-slate.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -16,8 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Livro" asp-action="Index">Biblioteca
-                    Web</a>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Livro" asp-action="Index">LoreKeeper</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,6 +31,8 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Livro" asp-action="Create">Criar
                                 Livro</a>
                         </li>
+
+
                     </ul>
                     <ul class="navbar-nav">
                         <!-- Dropdown do usuário -->
@@ -43,8 +44,17 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Usuario"
                                         asp-action="Perfil">Meu Perfil</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Livro"
-                                        asp-action="MeusLivros">Meus Livros</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Livro" asp-action="Index">Meus
+                                        Livros</a></li>
+
+
+
+                                <li class="nav-item">
+                                    <form method="post" asp-controller="Backup" asp-action="Restaurar">
+                                        <button type="submit" class="nav-link text-white">Restaurar último
+                                            backup</button>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                         <!-- Botão de Logout -->
@@ -65,7 +75,7 @@
 
     <footer class="border-top footer text-muted bg-black">
         <div class="container text-center">
-            <p class="text-white m-0">Biblioteca Web.</p>
+            <p class="text-white m-0">LoreKeeper</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,0 +1,54 @@
+@model Biblioteca.Servico.model.RedefinirSenhaModel;
+
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Redefinir Senha";
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-center">
+        @TempData["MensagemErro"]
+    </div>
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<div class="login-page">
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow p-4" style="background-color: rgba(52, 58, 64, 0.85); color: white;">
+                    <h2 class="text-center mb-3 discord-color">Biblioteca.Web</h2>
+                    <p class="text-center mb-4 text-muted">
+                        Redefina sua senha com segurança para continuar organizando sua biblioteca pessoal.
+                        Essa ferramenta foi feita para te ajudar a manter controle total sobre seus livros!
+                    </p>
+                    <h4 class="mb-3 discord-color text-center">Redefinir Senha</h4>
+                    <p class="text-center small text-light mb-4">
+                        Informe o e-mail da sua conta e crie uma nova senha.
+                        Você poderá fazer login normalmente após a alteração.
+                    </p>
+
+                    <form method="post" asp-controller="UsuarioLogin" asp-action="SolicitarRedeFiniSenha">
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="Email" asp-for="Email"
+                                placeholder="Digite o e-mail cadastrado" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-success w-100">Salvar nova senha</button>
+                        <a type="button" class="btn btn-primary w-100" asp-controller="UsuarioLogin"
+                            asp-action="Index">Voltar</a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Nova Senha";
+    var token = ViewBag.Token as string;
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-center">
+        @TempData["MensagemErro"]
+    </div>
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<div class="login-page">
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow p-4" style="background-color: rgba(52, 58, 64, 0.85); color: white;">
+                    <h2 class="text-center mb-3 discord-color">Biblioteca.Web</h2>
+
+                    <h4 class="mb-3 discord-color text-center">Criar Nova Senha</h4>
+                    <p class="text-center small text-light mb-4">
+                        Crie sua nova senha para continuar gerenciando sua biblioteca.
+                    </p>
+
+                    <form method="post" asp-action="RedefinirSenha">
+                        <input type="hidden" name="token" value="@token" />
+
+                        <div class="mb-3">
+                            <label for="novaSenha" class="form-label">Nova Senha</label>
+                            <input type="password" class="form-control" id="novaSenha" name="novaSenha"
+                                placeholder="Digite a nova senha" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmaSenha" class="form-label">Confirmar Nova Senha</label>
+                            <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha"
+                                placeholder="Confirme a nova senha" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Salvar nova senha</button>
+                        <a class="btn btn-primary w-100 mt-2" asp-controller="UsuarioLogin"
+                            asp-action="Index">Voltar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,6 +17,7 @@ builder.Services.AddHttpContextAccessor(); // Para usar IHttpContextAccessor
 builder.Services.AddScoped<GerenciadorDeSessao>();
 builder.Services.AddScoped<GerenciadorDelivros>();
 builder.Services.AddScoped<GerenciadorDeUsuarios>();
+builder.Services.AddScoped<EmailServico>();
 builder.Services.AddSingleton<BackupLivro>();
 // Add services to the container.===================================================
 builder.Services.AddControllersWithViews();

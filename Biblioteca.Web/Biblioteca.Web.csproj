@@ -8,6 +8,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Biblioteca.json" />
     <Content Remove="wwwroot\images\472448171_122129202044474700_2977790882836583195_n.jpg14716b11-d06f-4f65-9a7a-f0e094c276f5.png" />
   </ItemGroup>
 

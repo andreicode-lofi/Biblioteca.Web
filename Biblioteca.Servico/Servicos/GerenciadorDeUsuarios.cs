@@ -1,11 +1,5 @@
 using System.Text.Json;
 using Biblioteca.Servico.model;
-using BCrypt.Net;
-using Microsoft.AspNetCore.Http;
-
-
-
-
 
 namespace Biblioteca.Servico.Servicos;
 
@@ -31,6 +25,7 @@ public class GerenciadorDeUsuarios
             _usuarios = new List<UsuarioModel>();
         }
     }
+
     private async Task salvarUsuariosAsync()
     {
         var json = JsonSerializer.Serialize(_usuarios, new JsonSerializerOptions { WriteIndented = true });
@@ -78,63 +73,47 @@ public class GerenciadorDeUsuarios
         await salvarUsuariosAsync();
         return true;
     }
+    //=====================================================================================================
 
-    public async Task<UsuarioModel?> getByIdAsync(string id)
+    public async Task<string> GerarTokenRedefinicaoAsync(string email)
     {
-        if (string.IsNullOrEmpty(id))
-        {
-            return null;
-        }
-
         await carregarUsuariosAsync();
 
-        var usuario = _usuarios.FirstOrDefault(u => u.Id == id);
+        var usuario = _usuarios.FirstOrDefault(u => u.Email == email);
 
-        return usuario ?? null;
-    }
+        if (usuario == null) return null;
 
-    public async Task<bool> updateAsync(string id, string nome, string email, string senhaHas)
-    {
-        if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email))
-        {
-            return false;
-        }
-
-        await carregarUsuariosAsync();
-
-        var usuario = await getByIdAsync(id);
-
-        usuario.Nome = nome;
-        usuario.Email = email;
-
-        if (!string.IsNullOrEmpty(senhaHas))
-        {
-            usuario.SenhaHas = BCrypt.Net.BCrypt.HashPassword(senhaHas); // Atualiza a senha somente se for fornecida
-        }
-
-        usuario.DataAtualizacao = DateTime.UtcNow;
+        usuario.TokenRedefinicao = Guid.NewGuid().ToString();
+        usuario.TokenExperiracao = DateTime.UtcNow.AddMinutes(30);
 
         await salvarUsuariosAsync();
-        return true;
+        return usuario.TokenRedefinicao;
+
     }
 
-    public async Task<bool> Delete(string id)
+    public async Task<string> CriptografarSenha(string senha)
     {
-        if (string.IsNullOrEmpty(id))
-        {
-            return false;
-        }
+        return BCrypt.Net.BCrypt.HashPassword(senha);
+    }
 
+    public async Task<UsuarioModel?> BuscarPorTokenAsync(string token)
+    {
+        await carregarUsuariosAsync();
+        return _usuarios.FirstOrDefault(u => u.TokenRedefinicao == token && u.TokenExperiracao > DateTime.UtcNow);
+    }
+
+    public async Task<bool> AtualizarUsuarioSenhaAsync(UsuarioModel usuario)
+    {
         await carregarUsuariosAsync();
 
-        var usuario = await getByIdAsync(id);
+        var usuarioExistente = _usuarios.FirstOrDefault(u => u.Id == usuario.Id);
 
-        if (usuario == null)
-        {
-            return false; // Usuário não encontrado
-        }
+        if (usuarioExistente == null)
+            return false;
 
-        _usuarios.Remove(usuario);
+        usuarioExistente.SenhaHas = usuario.SenhaHas;
+        usuarioExistente.TokenRedefinicao = null;
+        usuarioExistente.TokenRedefinicao = null;
 
         await salvarUsuariosAsync();
 

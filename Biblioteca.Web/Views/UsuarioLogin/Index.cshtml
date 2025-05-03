@@ -19,7 +19,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card shadow p-4" style="background-color: rgba(52, 58, 64, 0.8); color: white;">
                     <!-- Texto de boas-vindas -->
-                    <h2 class="text-center mb-4 discord-color">Bem-vindo Biblioteca.Web</h2>
+                    <h2 class="text-center mb-4 discord-color">Bem-vindo ao LoreKeeper</h2>
                     <p class="text-center mb-4 text-muted">
                         A maneira mais fácil de organizar seus livros e administrar sua
                         biblioteca pessoal. Registre-se agora e tenha controle total sobre sua coleção!
@@ -38,6 +38,15 @@
                             <input type="password" class="form-control" id="Senha" asp-for="SenhaHas"
                                 placeholder="Digite sua senha" required>
                         </div>
+
+                        <!-- Link para recuperação de senha -->
+                        <div class="mb-3 text-end">
+                            <a asp-controller="UsuarioLogin" asp-action="SolicitarRedefiniSenha"
+                                class="text small discord-color">
+                                Esqueceu sua senha?
+                            </a>
+                        </div>
+
                         <button type="submit" class="btn btn-primary w-100">Login</button>
                     </form>
 
