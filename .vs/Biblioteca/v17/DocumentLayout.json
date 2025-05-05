@@ -5,14 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\controllers\\usuariologincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\controllers\\usuariologincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44705F99-B90A-02BA-90E3-86123C75507F}|Biblioteca.Servico\\Biblioteca.Servico.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.servico\\servicos\\emailservico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44705F99-B90A-02BA-90E3-86123C75507F}|Biblioteca.Servico\\Biblioteca.Servico.csproj|solutionrelative:biblioteca.servico\\servicos\\emailservico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\usuariologin\\solicitarredefinisenha.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\usuariologin\\solicitarredefinisenha.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 368,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,40 +26,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SolicitarRedefiniSenha.cshtml",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\UsuarioLogin\\SolicitarRedefiniSenha.cshtml",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\UsuarioLogin\\SolicitarRedefiniSenha.cshtml",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\UsuarioLogin\\SolicitarRedefiniSenha.cshtml",
-              "RelativeToolTip": "Biblioteca.Web\\Views\\UsuarioLogin\\SolicitarRedefiniSenha.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACUAAABqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-02T18:54:46.826Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UsuarioLoginController.cs",
               "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
               "RelativeDocumentMoniker": "Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
               "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
               "RelativeToolTip": "Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAEwHwAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T18:52:30.386Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmailServico.cs",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Servico\\Servicos\\EmailServico.cs",
-              "RelativeDocumentMoniker": "Biblioteca.Servico\\Servicos\\EmailServico.cs",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Servico\\Servicos\\EmailServico.cs",
-              "RelativeToolTip": "Biblioteca.Servico\\Servicos\\EmailServico.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwB8AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T18:57:45.193Z"
             }
           ]
         }

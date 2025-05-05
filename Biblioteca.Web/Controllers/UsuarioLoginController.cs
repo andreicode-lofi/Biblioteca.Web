@@ -94,7 +94,7 @@ public class UsuarioLoginController : Controller
             await _servicoEmail.EnviarAsync(email, "Redefinir senha", link);
 
             TempData["MensagemSucesso"] = "Verifique seu e-mail para redefinir a senha.";
-            return RedirectToAction("RedefinirSenha", new { token });
+            return RedirectToAction("SolicitarRedefiniSenha");
 
         }
         else
