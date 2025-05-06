@@ -20,10 +20,14 @@ public class LivroController : Controller
     [HttpGet]
     public IActionResult Index(int? page, string pesquisa)
     {
+        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+        if(usuarioId == null)
+            return RedirectToAction("Login", "Usuario");
+
         int pageSize = 6;
         int pageNumber = page ?? 1;
 
-        var livros = _gerenciadorDelivros.getAll();
+        var livros = _gerenciadorDelivros.getAll(usuarioId);
 
         if (!string.IsNullOrEmpty(pesquisa))
         {
@@ -51,6 +55,11 @@ public class LivroController : Controller
     [HttpPost("Livro/Create")]
     public async Task<IActionResult> Create(LivroModel model, IFormFile foto)
     {
+
+        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+        if (usuarioId == null) return RedirectToAction("Login", "Index");
+
+
         if (foto != null)
         {
             var caminhoImagem = await GeradorImagemAsync(foto);
@@ -71,7 +80,7 @@ public class LivroController : Controller
                 TrechosFavoritos = model.TrechosFavoritos
             };
 
-            await _gerenciadorDelivros.addLivroAsync(livro);
+            await _gerenciadorDelivros.addLivroAsync(livro, usuarioId);
             return RedirectToAction("Index");
         }
         return View();
@@ -102,7 +111,12 @@ public class LivroController : Controller
     [HttpDelete]
     public async Task<IActionResult> Delete(string id)
     {
-        var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id);
+        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+
+        var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
+
+        if (livroOriginal == null)
+            return Unauthorized();
 
         if (livroOriginal != null && !string.IsNullOrEmpty(livroOriginal.Imagem))
         {
@@ -114,7 +128,7 @@ public class LivroController : Controller
                 System.IO.File.Delete(caminhoImagem);
             }
         }
-        await _gerenciadorDelivros.RemoveAsync(id);
+        await _gerenciadorDelivros.RemoveAsync(id, usuarioId);
 
         return RedirectToAction("Index");
     }
@@ -122,21 +136,35 @@ public class LivroController : Controller
     [HttpGet]
     public async Task<IActionResult> Details(string id)
     {
-        var livro = await _gerenciadorDelivros.getByIdAsync(id);
+        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+        var livro = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
+
+        if (livro == null)
+            return Unauthorized();
+
         return View(livro);
     }
 
     [HttpGet]
     public async Task<IActionResult> Edit(string id)
     {
-        var livro = await _gerenciadorDelivros.getByIdAsync(id);
+        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+        
+        var livro = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
+
+        if (livro == null)
+            return Unauthorized();
+
         return View(livro);
     }
 
     [HttpPost]
     public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto, List<string> trechosFavoritos)
     {
-        var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id);
+
+        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+
+        var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
 
         if (livroOriginal == null)
         {
@@ -148,7 +176,7 @@ public class LivroController : Controller
         {
             if (!string.IsNullOrEmpty(livroOriginal.Imagem))
             {
-                string caminhoAntigo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", livroOriginal.Imagem.TrimStart('/'));
+                string caminhoAntigo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", livroOriginal.Imagem.TrimStart('/'));
 
                 if (System.IO.File.Exists(caminhoAntigo))
                 {
@@ -177,8 +205,12 @@ public class LivroController : Controller
             livro.TrechosFavoritos = new List<string>();
         }
 
+        livro.Id = livroOriginal.Id;
+        livro.UsuarioId = usuarioId;
+        livro.TrechosFavoritos = trechosFavoritos;
+
         //atualiza
-        await _gerenciadorDelivros.updateAsync(id, livro);
+        await _gerenciadorDelivros.updateAsync(id, livro, usuarioId);
         return RedirectToAction("Index");
     }
 }

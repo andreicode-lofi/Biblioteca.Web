@@ -52,7 +52,7 @@ public class GerenciadorDeUsuarios
 
         if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
         {
-            return false;// E-mail e senha são obrigatórios
+            return false;
         }
 
         if (_usuarios.Any(u => u.Email == email))
@@ -73,7 +73,7 @@ public class GerenciadorDeUsuarios
         await salvarUsuariosAsync();
         return true;
     }
-    //=====================================================================================================
+    //===================================redefinição de senha==================================================================
 
     public async Task<string> GerarTokenRedefinicaoAsync(string email)
     {

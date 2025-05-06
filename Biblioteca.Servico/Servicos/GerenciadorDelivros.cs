@@ -23,38 +23,54 @@ public class GerenciadorDelivros
             _livros = new List<LivroModel>(); // Garante que a lista nunca seja null
         }
     }
+
     private async Task saveLivroAsync()
     {
         var json = JsonSerializer.Serialize(_livros, new JsonSerializerOptions { WriteIndented = true });
         await File.WriteAllTextAsync(_caminhoDoArquivo, json);
     }
-    public async Task addLivroAsync(LivroModel livro)
+
+    public List<LivroModel> getAll(string usuarioId)
     {
-        _livros?.Add(livro);
+
+        return _livros.Where(l => l.UsuarioId == usuarioId).ToList();
+    }
+
+    public async Task addLivroAsync(LivroModel livro, string usuarioId)
+    {
+        await carregarLivrosAsync();
+        livro.UsuarioId = usuarioId;
+        livro.Id ??= Guid.NewGuid().ToString();
+        _livros.Add(livro);
         await saveLivroAsync();
     }
-    public List<LivroModel> getAll()
+
+    public async Task<LivroModel?> getByIdAsync(string id, string usuarioId)
     {
-        return _livros;
+        await carregarLivrosAsync(); 
+        return _livros?.FirstOrDefault(l => l.Id == id && l.UsuarioId == usuarioId);
     }
-    public async Task RemoveAsync(string id)
+
+    public async Task updateAsync(string id, LivroModel livro, string usuarioId)
     {
-        _livros?.RemoveAll(l => l.Id == id);
-        await saveLivroAsync();
-    }
-    public async Task<LivroModel?> getByIdAsync(string id)
-    {
-        await carregarLivrosAsync(); // Recarrega os dados do JSON antes de buscar
-        return _livros?.FirstOrDefault(l => l.Id == id);
-    }
-    public async Task updateAsync(string id, LivroModel livro)
-    {
-        var index = _livros.FindIndex(l => l.Id == id);
+        await carregarLivrosAsync();
+        var index = _livros.FindIndex(l => l.Id == id && l.UsuarioId == usuarioId);
         if (index == -1)
         {
             throw new InvalidOperationException("Livros não encontrado");
         }
+
+        livro.Id = id;
+        livro.UsuarioId = usuarioId;
+
         _livros[index] = livro;
+        await saveLivroAsync();
+    }
+
+    public async Task RemoveAsync(string id, string usuarioId)
+    {
+        await carregarLivrosAsync();
+        _livros?.RemoveAll(l => l.Id == id && l.UsuarioId == usuarioId);
         await saveLivroAsync();
     }
 }

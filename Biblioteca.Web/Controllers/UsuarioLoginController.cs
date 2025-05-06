@@ -44,6 +44,7 @@ public class UsuarioLoginController : Controller
         if (usuario != null)
         {
             _sessao.CriarSessaoDoUsuario(usuario);
+            HttpContext.Session.SetString("UsuarioId", usuario.Id.ToString());//Guardando o id do usuario na sessão
             return RedirectToAction("Index", "Livro");
         }
         else

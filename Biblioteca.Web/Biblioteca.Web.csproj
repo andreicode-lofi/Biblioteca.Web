@@ -10,6 +10,11 @@
   <ItemGroup>
     <Content Remove="Biblioteca.json" />
     <Content Remove="wwwroot\images\472448171_122129202044474700_2977790882836583195_n.jpg14716b11-d06f-4f65-9a7a-f0e094c276f5.png" />
+    <Content Remove="wwwroot\images\61k0fw6l1-l._sl1455_.jpg45920b09-20c6-4d28-b05b-9ad1b0f4a10e.png" />
+    <Content Remove="wwwroot\images\92133114_113828810267989_3518049686868983808_o.jpgc236c1fd-cad3-414b-bc20-fc4084b003ac.png" />
+    <Content Remove="wwwroot\images\92133114_113828810267989_3518049686868983808_o.jpgfe9b7a18-7fe8-40ac-9b81-7bbf1cbc8e98.png" />
+    <Content Remove="wwwroot\images\9786555114355.webp3a24fed4-e421-45f0-9f82-640a90b8a9be.png" />
+    <Content Remove="wwwroot\images\9786555114355.webpbdb9d054-875b-41bd-bc63-00b02d24be55.png" />
   </ItemGroup>
 
   <ItemGroup>
