@@ -12,6 +12,7 @@
     <li>Armazenamento dos dados em um arquivo JSON.</li>
     <li>Interface web para exibição do catálogo.</li>
     <li>Upload de imagens com <strong>pré-visualização antes do envio</strong>.</li>
+    <li>Adição de <strong>trechos ou frases favoritas</strong> em cada livro, permitindo ao usuário registrar e acessar facilmente partes importantes ou marcantes da leitura.</li>
 </ul>
 
 <h2>🆕 Atualizações</h2>  
