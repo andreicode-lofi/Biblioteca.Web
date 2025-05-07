@@ -13,6 +13,8 @@
     <li>Interface web para exibição do catálogo.</li>
     <li>Upload de imagens com <strong>pré-visualização antes do envio</strong>.</li>
     <li>Adição de <strong>trechos ou frases favoritas</strong> em cada livro, permitindo ao usuário registrar e acessar facilmente partes importantes ou marcantes da leitura.</li>
+    <li><strong>Segurança de acesso:</strong> Sistema de login com autenticação de e-mail e senha, garantindo que apenas usuários autorizados possam acessar e gerenciar seus dados.</li>
+    <li><strong>Backup automático:</strong> Geração de cópias de segurança dos dados sempre que o sistema é iniciado, protegendo contra perda de informações importantes.</li>
 </ul>
 
 <h2>🆕 Atualizações</h2>  
