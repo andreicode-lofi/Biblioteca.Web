@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using Biblioteca.Servico.Servicos;
 using Biblioteca.Web.Context;
+using Biblioteca.Web.Repository;
+using Biblioteca.Web.Repository.Interface;
 using Biblioteca.Web.Sessao;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +35,9 @@ builder.Services.AddScoped<GerenciadorDelivros>();
 builder.Services.AddScoped<GerenciadorDeUsuarios>();
 builder.Services.AddScoped<EmailServico>();
 builder.Services.AddSingleton<BackupLivro>();
+
+builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 //=================================================================================
 builder.Services.AddControllersWithViews();
 

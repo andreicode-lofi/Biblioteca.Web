@@ -1,5 +1,6 @@
 using Biblioteca.Servico.model;
 using Biblioteca.Servico.Servicos;
+using Biblioteca.Web.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList.Extensions;
 
@@ -9,12 +10,14 @@ public class LivroController : Controller
 {
     private readonly ILogger<LivroController> _logger;
     private readonly GerenciadorDelivros _gerenciadorDelivros;
+    private readonly ILivroRepository _ilivroRepository;
     private readonly string _caminhoImagem;
 
-    public LivroController(ILogger<LivroController> logger, GerenciadorDelivros gerenciadorDelivros)
+    public LivroController(ILogger<LivroController> logger, GerenciadorDelivros gerenciadorDelivros, ILivroRepository livroRepository)
     {
         _logger = logger;
         _gerenciadorDelivros = gerenciadorDelivros;
+        _ilivroRepository = livroRepository;
     }
 
     [HttpGet]
