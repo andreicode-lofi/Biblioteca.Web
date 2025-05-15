@@ -12,6 +12,9 @@
     <li>Armazenamento dos dados em um arquivo JSON.</li>
     <li>Interface web para exibição do catálogo.</li>
     <li>Upload de imagens com <strong>pré-visualização antes do envio</strong>.</li>
+    <li>Adição de <strong>trechos ou frases favoritas</strong> em cada livro, permitindo ao usuário registrar e acessar facilmente partes importantes ou marcantes da leitura.</li>
+    <li><strong>Segurança de acesso:</strong> Sistema de login com autenticação de e-mail e senha, garantindo que apenas usuários autorizados possam acessar e gerenciar seus dados.</li>
+    <li><strong>Backup automático:</strong> Geração de cópias de segurança dos dados sempre que o sistema é iniciado, protegendo contra perda de informações importantes.</li>
 </ul>
 
 <h2>🆕 Atualizações</h2>  
@@ -26,7 +29,8 @@
     <li><strong>⭐ Sistema de Avaliação:</strong> Agora é possível avaliar os livros cadastrados, permitindo que os usuários atribuam uma nota de 1 a 5 estrelas.</li>  
     <li><strong>📌 Trechos Favoritos:</strong> Implementada a funcionalidade para salvar trechos favoritos dos livros lidos, possibilitando que os usuários registrem e revisitem suas partes preferidas.</li>
     <li><strong>💾 Backup Automatizado:</strong> Implementada uma funcionalidade que cria automaticamente arquivos de backup dos dados registrados em JSON sempre que o sistema é iniciado. Além disso, foi adicionado um controle para manter no máximo cinco backups, evitando acúmulo excessivo de arquivos no servidor.</li>
-     <li><strong>📧 Redefinição de Senha por E-mail:</strong> Implementado um sistema de recuperação de senha com envio de e-mail. O usuário recebe um link contendo um token único para redefinir sua senha com segurança.</li>
+    <li><strong>📧 Redefinição de Senha por E-mail:</strong> Implementado um sistema de recuperação de senha com envio de e-mail. O usuário recebe um link contendo um token único para redefinir sua senha com segurança.</li>
+    <li><strong>👤 Catálogo por Usuário:</strong> O sistema agora organiza os livros com base no usuário logado. Cada pessoa tem acesso apenas aos livros que cadastrou, garantindo um catálogo personalizado e seguro para cada conta.</li>
 </ul>
 
 <h2>🚀 Como Executar</h2>
