@@ -67,7 +67,7 @@ public class UsuarioLoginController : Controller
 
         if (novoUsuario)
         {
-            return RedirectToAction("Index", "Livro");
+            return RedirectToAction("Index");
         }
         else
         {

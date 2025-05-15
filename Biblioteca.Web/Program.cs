@@ -1,7 +1,19 @@
+using System.Diagnostics;
 using Biblioteca.Servico.Servicos;
+using Biblioteca.Web.Context;
 using Biblioteca.Web.Sessao;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configurando do banco de dados==================================================
+string? pgSqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(pgSqlConnection)
+);
+//=================================================================================
+
+
 
 // Configurando os serviços sessço==================================================
 builder.Services.AddDistributedMemoryCache(); // Necessario para sessçes em memoria
@@ -10,16 +22,18 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(30); // Tempo de expiração da sessço
     options.Cookie.HttpOnly = true; // Torna o cookie acessivel apenas pelo servidor
 });
-
 builder.Services.AddHttpContextAccessor(); // Para usar IHttpContextAccessor
 //=================================================================================
-//=================================================================================
+
+
+
+//Servicos biblioteca json=========================================================
 builder.Services.AddScoped<GerenciadorDeSessao>();
 builder.Services.AddScoped<GerenciadorDelivros>();
 builder.Services.AddScoped<GerenciadorDeUsuarios>();
 builder.Services.AddScoped<EmailServico>();
 builder.Services.AddSingleton<BackupLivro>();
-// Add services to the container.===================================================
+//=================================================================================
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -49,6 +63,7 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 
+
 //Execute backuo====================================================================
 using (var escopo = app.Services.CreateScope())
 {
@@ -56,4 +71,6 @@ using (var escopo = app.Services.CreateScope())
     backupService.CriarBackup();
 }
 //====================================================================================
+/*var url = "http://localhost:5000";
+Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });*/
 app.Run();

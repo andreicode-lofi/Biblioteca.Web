@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\andre\\source\\repos\\Biblioteca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\controllers\\usuariologincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\controllers\\usuariologincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\controllers\\livrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\controllers\\livrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44705F99-B90A-02BA-90E3-86123C75507F}|Biblioteca.Servico\\Biblioteca.Servico.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.servico\\servicos\\gerenciadordelivros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44705F99-B90A-02BA-90E3-86123C75507F}|Biblioteca.Servico\\Biblioteca.Servico.csproj|solutionrelative:biblioteca.servico\\servicos\\gerenciadordelivros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 74,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,41 +34,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuarioLoginController.cs",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
-              "RelativeToolTip": "Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Program.cs",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Program.cs",
+              "RelativeToolTip": "Biblioteca.Web\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T19:15:22.979Z",
+              "WhenOpened": "2025-05-15T14:44:56.163Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LivroController.cs",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\LivroController.cs",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Controllers\\LivroController.cs",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\LivroController.cs",
-              "RelativeToolTip": "Biblioteca.Web\\Controllers\\LivroController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAHUAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T18:38:20.211Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\appsettings.json",
+              "RelativeToolTip": "Biblioteca.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-15T14:33:28.181Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GerenciadorDelivros.cs",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Servico\\Servicos\\GerenciadorDelivros.cs",
-              "RelativeDocumentMoniker": "Biblioteca.Servico\\Servicos\\GerenciadorDelivros.cs",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Servico\\Servicos\\GerenciadorDelivros.cs",
-              "RelativeToolTip": "Biblioteca.Servico\\Servicos\\GerenciadorDelivros.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Context\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "Biblioteca.Web\\Context\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T13:51:40.342Z",
+              "WhenOpened": "2025-05-15T14:26:48.174Z",
               "EditorCaption": ""
             }
           ]

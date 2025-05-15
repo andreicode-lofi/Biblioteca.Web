@@ -23,3 +23,15 @@ $('.btn-produto-delete').click(function () {
         });
     });
 });
+
+//Registra usuario
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("formRegistroUsuario");
+
+    if (form) {
+        form.addEventListener("submit", function () {
+            
+        });
+    }
+});
