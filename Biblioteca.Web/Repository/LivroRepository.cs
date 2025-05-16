@@ -21,37 +21,37 @@ namespace Biblioteca.Web.Repository
             if (string.IsNullOrEmpty(livro.Id))
                 livro.Id = Guid.NewGuid().ToString();
 
-            _context.LivroModel.Add(livro);
+            _context.Livros.Add(livro);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<LivroModel>> GetAllAsync(string usuarioId)
+        public List<LivroModel> GetAll(string usuarioId)
         {
-            return await _context.LivroModel
+            return _context.Livros
                 .Where(l => l.UsuarioId == usuarioId)
-                .ToListAsync();
+                .ToList();
         }
 
         public async Task<LivroModel?> GetByIdAsync(string id, string usuarioId)
         {
-            return await _context.LivroModel
+            return await _context.Livros
                 .FirstOrDefaultAsync(l => l.Id == id && l.UsuarioId == usuarioId);
         }
 
         public async Task RemoveAsync(string id, string usuarioId)
         {
-            var livro = await _context.LivroModel
+            var livro = await _context.Livros
                 .FirstOrDefaultAsync(l => l.Id == id && l.UsuarioId == usuarioId);
             if(livro != null)
             {
-                _context.LivroModel.Remove(livro);
+                _context.Livros.Remove(livro);
                 await _context.SaveChangesAsync();
             }
         }
 
         public async Task UpdateAsync(string id, LivroModel livro, string usuarioId)
         {
-            var livroExistente = await _context.LivroModel
+            var livroExistente = await _context.Livros
                .FirstOrDefaultAsync(l => l.Id == id && l.UsuarioId == usuarioId);
 
             if (livroExistente == null)

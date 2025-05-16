@@ -30,7 +30,7 @@ public class LivroController : Controller
         int pageSize = 6;
         int pageNumber = page ?? 1;
 
-        var livros = _gerenciadorDelivros.getAll(usuarioId);
+        var livros = _ilivroRepository.GetAll(usuarioId); //_gerenciadorDelivros.getAll(usuarioId);
 
         if (!string.IsNullOrEmpty(pesquisa))
         {
@@ -61,7 +61,6 @@ public class LivroController : Controller
 
         var usuarioId = HttpContext.Session.GetString("UsuarioId");
         if (usuarioId == null) return RedirectToAction("Login", "Index");
-
 
         if (foto != null)
         {
@@ -164,7 +163,6 @@ public class LivroController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto, List<string> trechosFavoritos)
     {
-
         var usuarioId = HttpContext.Session.GetString("UsuarioId");
 
         var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
@@ -194,8 +192,6 @@ public class LivroController : Controller
         {
             livro.Imagem = Path.GetFileName(livroOriginal.Imagem);
         }
-
-
 
         // Atualização trechos favoritos
         //---------------------------------------------------

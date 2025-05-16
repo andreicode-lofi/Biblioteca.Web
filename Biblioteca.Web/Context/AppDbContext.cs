@@ -1,5 +1,7 @@
-﻿using Biblioteca.Web.Models;
+﻿using Biblioteca.Web.Context.EfConfigurations;
+using Biblioteca.Web.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Text.Json;
 
@@ -11,10 +13,9 @@ namespace Biblioteca.Web.Context
         {
         }
 
-        public DbSet<LivroModel> LivroModel {get; set;}
-        public DbSet<UsuarioModel> UsuarioModel { get; set; }
+        public DbSet<LivroModel> Livros {get; set;}
+        public DbSet<UsuarioModel> Usuarios { get; set; }
         public DbSet<RedefinirSenhaModel> RedefinirSenhasModel { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,20 +24,9 @@ namespace Biblioteca.Web.Context
             // Diz ao EF Core que esse modelo NÃO tem chave e NÃO deve virar tabela
             modelBuilder.Entity<RedefinirSenhaModel>().HasNoKey();
 
-
-
-
-            // Conversor de List<string> para JSON (TrechosFavoritos)
-            var trechosConverter = new ValueConverter<List<string>, string>(
-                v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null), // evita uso de sobrecarga com argumento opcional
-                v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions?)null) ?? new List<string>()
-            );
-
-            modelBuilder.Entity<LivroModel>()
-                .Property(l => l.TrechosFavoritos)
-                .HasConversion(trechosConverter);
+            //Instanciando configuração ef.core para entidade Livro
+            modelBuilder.ApplyConfiguration(new LivroConfiguration());
 
         }
-
     }
 }

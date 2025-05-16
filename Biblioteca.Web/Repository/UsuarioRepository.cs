@@ -16,7 +16,7 @@ namespace Biblioteca.Web.Repository
 
         public async Task<UsuarioModel?> LoginAsync(string email, string senha)
         {
-            var usuario = await _context.UsuarioModel.FirstOrDefaultAsync(u => u.Email == email);
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
 
             if (usuario != null && BCrypt.Net.BCrypt.Verify(senha, usuario.SenhaHas))
             {
@@ -31,7 +31,7 @@ namespace Biblioteca.Web.Repository
             if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
                 return false;
 
-            if (await _context.UsuarioModel.AnyAsync(u => u.Email == email))
+            if (await _context.Usuarios.AnyAsync(u => u.Email == email))
                 return false; // Já existe um usuário com esse email
 
             var novoUsuario = new UsuarioModel
@@ -43,7 +43,7 @@ namespace Biblioteca.Web.Repository
                 DataRegistro = DateTime.UtcNow
             };
 
-            _context.UsuarioModel.Add(novoUsuario);
+            _context.Usuarios.Add(novoUsuario);
             await _context.SaveChangesAsync();
             return true;
         }
@@ -52,7 +52,7 @@ namespace Biblioteca.Web.Repository
 
         public async Task<string?> GerarTokenRedefinicaoAsync(string email)
         {
-            var usuario = await _context.UsuarioModel.FirstOrDefaultAsync(u => u.Email == email);
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
 
             if (usuario == null)
                 return null;
@@ -71,13 +71,13 @@ namespace Biblioteca.Web.Repository
 
         public async Task<UsuarioModel?> BuscarPorTokenAsync(string token)
         {
-            return await _context.UsuarioModel
+            return await _context.Usuarios
             .FirstOrDefaultAsync(u => u.TokenRedefinicao == token && u.TokenExperiracao > DateTime.UtcNow);
         }
 
         public async Task<bool> AtualizarUsuarioSenhaAsync(UsuarioModel usuarioAtualizado)
         {
-            var usuario = await _context.UsuarioModel.FirstOrDefaultAsync(u => u.Id == usuarioAtualizado.Id);
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == usuarioAtualizado.Id);
 
             if (usuario == null)
                 return false;
