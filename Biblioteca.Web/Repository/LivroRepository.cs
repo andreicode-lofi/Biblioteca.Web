@@ -1,4 +1,6 @@
-﻿using Biblioteca.Web.Context;
+﻿using System.Globalization;
+using System.Text;
+using Biblioteca.Web.Context;
 using Biblioteca.Web.Models;
 using Biblioteca.Web.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -27,9 +29,11 @@ namespace Biblioteca.Web.Repository
 
         public List<LivroModel> GetAll(string usuarioId)
         {
-            return _context.Livros
+            var livros = _context.Livros
                 .Where(l => l.UsuarioId == usuarioId)
                 .ToList();
+
+            return livros ?? new List<LivroModel>();
         }
 
         public async Task<LivroModel?> GetByIdAsync(string id, string usuarioId)
@@ -42,7 +46,7 @@ namespace Biblioteca.Web.Repository
         {
             var livro = await _context.Livros
                 .FirstOrDefaultAsync(l => l.Id == id && l.UsuarioId == usuarioId);
-            if(livro != null)
+            if (livro != null)
             {
                 _context.Livros.Remove(livro);
                 await _context.SaveChangesAsync();
@@ -77,6 +81,23 @@ namespace Biblioteca.Web.Repository
             livroExistente.TrechosFavoritos = livro.TrechosFavoritos;
 
             await _context.SaveChangesAsync();
+        }
+
+        public string RemoverAcentos(string pesquisa)
+        {
+            if (string.IsNullOrEmpty(pesquisa)) return string.Empty;
+
+            var normalized = pesquisa.Normalize(System.Text.NormalizationForm.FormD);
+            var builder = new StringBuilder();
+
+            foreach (var item in pesquisa)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(item);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                    builder.Append(item);
+            }
+
+            return builder.ToString().Normalize(NormalizationForm.FormC);
         }
     }
 }

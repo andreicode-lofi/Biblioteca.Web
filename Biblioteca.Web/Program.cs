@@ -31,7 +31,6 @@ builder.Services.AddHttpContextAccessor(); // Para usar IHttpContextAccessor
 
 //Servicos biblioteca json=========================================================
 builder.Services.AddScoped<GerenciadorDeSessao>();
-builder.Services.AddScoped<GerenciadorDelivros>();
 builder.Services.AddScoped<GerenciadorDeUsuarios>();
 builder.Services.AddScoped<EmailServico>();
 builder.Services.AddSingleton<BackupLivro>();

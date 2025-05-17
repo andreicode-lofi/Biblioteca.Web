@@ -9,5 +9,6 @@ namespace Biblioteca.Web.Repository.Interface
         Task<LivroModel?> GetByIdAsync(string id, string usuarioId);
         Task UpdateAsync(string id, LivroModel livro, string usuarioId);
         Task RemoveAsync(string id, string usuarioId);
+        string RemoverAcentos(string pesquisa);
     }
 }

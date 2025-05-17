@@ -1,4 +1,4 @@
-using System.Text.Json;
+/*using System.Text.Json;
 using Biblioteca.Servico.model;
 
 namespace Biblioteca.Servico.Servicos;
@@ -75,7 +75,7 @@ public class GerenciadorDelivros
     }
 }
 
-
+*/
 
 
 

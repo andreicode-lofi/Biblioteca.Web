@@ -1,4 +1,4 @@
-namespace Biblioteca.Servico.model;
+/*namespace Biblioteca.Servico.model;
 
 public class LivroModel
 {
@@ -13,12 +13,12 @@ public class LivroModel
 
 
     /*-----------------detail livro------------------------*/
-    public string Sinopese { get; set; } = string.Empty; //Um pequeno resumo do livro
-    public string Comentarios { get; set; } = string.Empty;
-    public string Avaliacao { get; set; } = string.Empty;
-    public string NumeroPaginas { get; set; } = string.Empty;
-    public string UsuarioId { get; set; } = string.Empty;
+/* public string Sinopese { get; set; } = string.Empty; //Um pequeno resumo do livro
+ public string Comentarios { get; set; } = string.Empty;
+ public string Avaliacao { get; set; } = string.Empty;
+ public string NumeroPaginas { get; set; } = string.Empty;
+ public string UsuarioId { get; set; } = string.Empty;
 
-    // Lista para armazenar trechos favoritos do livro
-    public List<string> TrechosFavoritos { get; set; } = new List<string>();
-}
+ // Lista para armazenar trechos favoritos do livro
+ public List<string> TrechosFavoritos { get; set; } = new List<string>();
+}*/

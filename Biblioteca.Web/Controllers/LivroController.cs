@@ -1,7 +1,8 @@
-using Biblioteca.Servico.model;
-using Biblioteca.Servico.Servicos;
+//using System.Runtime.InteropServices.Marshalling;
+using Biblioteca.Web.Models;
 using Biblioteca.Web.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.JSInterop.Infrastructure;
 using X.PagedList.Extensions;
 
 namespace Biblioteca.Web.Controllers;
@@ -9,14 +10,12 @@ namespace Biblioteca.Web.Controllers;
 public class LivroController : Controller
 {
     private readonly ILogger<LivroController> _logger;
-    private readonly GerenciadorDelivros _gerenciadorDelivros;
     private readonly ILivroRepository _ilivroRepository;
-    private readonly string _caminhoImagem;
+    private readonly string? _caminhoImagem;
 
-    public LivroController(ILogger<LivroController> logger, GerenciadorDelivros gerenciadorDelivros, ILivroRepository livroRepository)
+    public LivroController(ILogger<LivroController> logger, ILivroRepository livroRepository)
     {
         _logger = logger;
-        _gerenciadorDelivros = gerenciadorDelivros;
         _ilivroRepository = livroRepository;
     }
 
@@ -24,22 +23,22 @@ public class LivroController : Controller
     public IActionResult Index(int? page, string pesquisa)
     {
         var usuarioId = HttpContext.Session.GetString("UsuarioId");
-        if(usuarioId == null)
+        if (usuarioId == null)
             return RedirectToAction("Login", "Usuario");
 
         int pageSize = 6;
         int pageNumber = page ?? 1;
 
-        var livros = _ilivroRepository.GetAll(usuarioId); //_gerenciadorDelivros.getAll(usuarioId);
+        var livros = _ilivroRepository.GetAll(usuarioId);
 
         if (!string.IsNullOrEmpty(pesquisa))
         {
             pesquisa = pesquisa.ToLower();
 
             livros = livros.Where(l =>
-                l.Name.ToLower().Contains(pesquisa) ||
-                l.Autor.ToLower().Contains(pesquisa) ||
-                l.Genero.ToLower().Contains(pesquisa)
+                _ilivroRepository.RemoverAcentos(l.Name ?? "").ToLower().Contains(pesquisa) ||
+                _ilivroRepository.RemoverAcentos(l.Autor ?? "").ToLower().Contains(pesquisa) ||
+                _ilivroRepository.RemoverAcentos(l.Genero ?? "").ToLower().Contains(pesquisa)
             ).ToList();
         }
 
@@ -58,7 +57,6 @@ public class LivroController : Controller
     [HttpPost("Livro/Create")]
     public async Task<IActionResult> Create(LivroModel model, IFormFile foto)
     {
-
         var usuarioId = HttpContext.Session.GetString("UsuarioId");
         if (usuarioId == null) return RedirectToAction("Login", "Index");
 
@@ -68,21 +66,21 @@ public class LivroController : Controller
 
             var livro = new LivroModel
             {
-                Name = model.Name,
-                Autor = model.Autor,
-                Genero = model.Genero,
-                Idioma = model.Idioma,
+                Name = _ilivroRepository.RemoverAcentos(model.Name ?? "").ToLower(),
+                Autor = _ilivroRepository.RemoverAcentos(model.Autor ?? "").ToLower(),
+                Genero = _ilivroRepository.RemoverAcentos(model.Genero ?? "").ToLower(),
+                Idioma = _ilivroRepository.RemoverAcentos(model.Idioma ?? "").ToLower(),
                 LivroFinalizado = model.LivroFinalizado,
                 Imagem = caminhoImagem,
                 ano = model.ano,
-                Sinopese = model.Sinopese,
-                Comentarios = model.Comentarios,
+                Sinopese = _ilivroRepository.RemoverAcentos(model.Sinopese ?? "").ToLower(),
+                Comentarios = _ilivroRepository.RemoverAcentos(model.Comentarios ?? "").ToLower(),
                 Avaliacao = model.Avaliacao,
                 NumeroPaginas = model.NumeroPaginas,
                 TrechosFavoritos = model.TrechosFavoritos
             };
+            await _ilivroRepository.AddLivroAsync(livro, usuarioId);
 
-            await _gerenciadorDelivros.addLivroAsync(livro, usuarioId);
             return RedirectToAction("Index");
         }
         return View();
@@ -113,9 +111,9 @@ public class LivroController : Controller
     [HttpDelete]
     public async Task<IActionResult> Delete(string id)
     {
-        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+        var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
 
-        var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
+        var livroOriginal = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livroOriginal == null)
             return Unauthorized();
@@ -130,7 +128,7 @@ public class LivroController : Controller
                 System.IO.File.Delete(caminhoImagem);
             }
         }
-        await _gerenciadorDelivros.RemoveAsync(id, usuarioId);
+        await _ilivroRepository.RemoveAsync(id, usuarioId);
 
         return RedirectToAction("Index");
     }
@@ -138,8 +136,8 @@ public class LivroController : Controller
     [HttpGet]
     public async Task<IActionResult> Details(string id)
     {
-        var usuarioId = HttpContext.Session.GetString("UsuarioId");
-        var livro = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
+        var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
+        var livro = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livro == null)
             return Unauthorized();
@@ -150,9 +148,9 @@ public class LivroController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(string id)
     {
-        var usuarioId = HttpContext.Session.GetString("UsuarioId");
-        
-        var livro = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
+        var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
+
+        var livro = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livro == null)
             return Unauthorized();
@@ -163,9 +161,9 @@ public class LivroController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto, List<string> trechosFavoritos)
     {
-        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+        var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
 
-        var livroOriginal = await _gerenciadorDelivros.getByIdAsync(id, usuarioId);
+        var livroOriginal = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livroOriginal == null)
         {
@@ -209,7 +207,7 @@ public class LivroController : Controller
         livro.TrechosFavoritos = trechosFavoritos;
 
         //atualiza
-        await _gerenciadorDelivros.updateAsync(id, livro, usuarioId);
+        await _ilivroRepository.UpdateAsync(id, livro, usuarioId);
         return RedirectToAction("Index");
     }
 }
