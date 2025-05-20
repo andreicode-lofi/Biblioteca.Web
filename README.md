@@ -2,14 +2,15 @@
 <ul>
     <li>ASP.NET 9</li>
     <li>C#</li>
-    <li>JSON para armazenamento de dados</li>
+    <li>Entity Framework (ORM para acesso ao banco de dados)</li>
+    <li>PostgreSQL para armazenamento de dados</li>
     <li>HTML, CSS e JavaScript no front-end</li>
 </ul>
 
 <h2>📌 Funcionalidades</h2>
 <ul>
     <li>CRUD completo de livros (Adicionar, Editar, Excluir e Listar).</li>
-    <li>Armazenamento dos dados em um arquivo JSON.</li>
+    <li>Armazenamento dos dados em banco de dados PostgreSQL utilizando o Entity Framework.</li>
     <li>Interface web para exibição do catálogo.</li>
     <li>Upload de imagens com <strong>pré-visualização antes do envio</strong>.</li>
     <li>Adição de <strong>trechos ou frases favoritas</strong> em cada livro, permitindo ao usuário registrar e acessar facilmente partes importantes ou marcantes da leitura.</li>
@@ -28,18 +29,9 @@
     <li><strong>🗑️ Exclusão de Imagens Não Utilizadas:</strong> Ao atualizar ou remover um livro, a imagem antiga também é excluída, evitando acúmulo de arquivos no servidor.</li>  
     <li><strong>⭐ Sistema de Avaliação:</strong> Agora é possível avaliar os livros cadastrados, permitindo que os usuários atribuam uma nota de 1 a 5 estrelas.</li>  
     <li><strong>📌 Trechos Favoritos:</strong> Implementada a funcionalidade para salvar trechos favoritos dos livros lidos, possibilitando que os usuários registrem e revisitem suas partes preferidas.</li>
-    <li><strong>💾 Backup Automatizado:</strong> Implementada uma funcionalidade que cria automaticamente arquivos de backup dos dados registrados em JSON sempre que o sistema é iniciado. Além disso, foi adicionado um controle para manter no máximo cinco backups, evitando acúmulo excessivo de arquivos no servidor.</li>
+    <li><strong>💾 Backup Automatizado:</strong> Implementada uma funcionalidade que cria automaticamente arquivos de backup dos dados registrados sempre que o sistema é iniciado. Além disso, foi adicionado um controle para manter no máximo cinco backups, evitando acúmulo excessivo de arquivos no servidor.</li>
     <li><strong>📧 Redefinição de Senha por E-mail:</strong> Implementado um sistema de recuperação de senha com envio de e-mail. O usuário recebe um link contendo um token único para redefinir sua senha com segurança.</li>
     <li><strong>👤 Catálogo por Usuário:</strong> O sistema agora organiza os livros com base no usuário logado. Cada pessoa tem acesso apenas aos livros que cadastrou, garantindo um catálogo personalizado e seguro para cada conta.</li>
+    <li><strong>🗃️ Migração para Banco de Dados:</strong> Os dados, que anteriormente eram salvos em arquivos JSON, agora são armazenados de forma estruturada no banco de dados PostgreSQL utilizando o Entity Framework, proporcionando maior escalabilidade e robustez.</li>
 </ul>
-
-<h2>🚀 Como Executar</h2>
-<ol>
-    <li>Clone este repositório: <code>git clone https://github.com/seu-usuario/seu-repositorio.git</code></li>
-    <li>Abra a solução no Visual Studio.</li>
-    <li>Compile e execute o projeto.</li>
-</ol>
-
-
-
 
