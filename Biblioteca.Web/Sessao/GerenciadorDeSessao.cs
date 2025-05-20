@@ -1,4 +1,4 @@
-﻿using Biblioteca.Servico.model;
+﻿using Biblioteca.Web.Models;
 using Newtonsoft.Json;
 
 namespace Biblioteca.Web.Sessao

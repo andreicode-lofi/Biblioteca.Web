@@ -21,6 +21,8 @@ namespace Biblioteca.Web.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<UsuarioModel>().ToTable("UsuarioModel");//mudar nome:UssuarioModel para usuarios
+
             // Diz ao EF Core que esse modelo NÃO tem chave e NÃO deve virar tabela
             modelBuilder.Entity<RedefinirSenhaModel>().HasNoKey();
 

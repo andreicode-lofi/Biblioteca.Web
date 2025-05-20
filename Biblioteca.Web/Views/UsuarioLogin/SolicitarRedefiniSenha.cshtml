@@ -1,4 +1,4 @@
-@model Biblioteca.Servico.model.RedefinirSenhaModel;
+@model Biblioteca.Web.Models.RedefinirSenhaModel;
 
 @{
     Layout = "_LayoutDeslogado";
@@ -41,7 +41,7 @@
                             <input type="email" class="form-control" id="Email" asp-for="Email"
                                 placeholder="Digite o e-mail cadastrado" required>
                         </div>
-                       
+
                         <button type="submit" class="btn btn-success w-100">Enivar solicitação</button>
                         <a type="button" class="btn btn-primary w-100" asp-controller="UsuarioLogin"
                             asp-action="Index">Voltar</a>

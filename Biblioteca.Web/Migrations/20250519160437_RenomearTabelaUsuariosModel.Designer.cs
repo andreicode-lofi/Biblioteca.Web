@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Biblioteca.Web.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250516170518_RenomearLivroModelParaLivros4")]
-    partial class RenomearLivroModelParaLivros4
+    [Migration("20250519160437_RenomearTabelaUsuariosModel")]
+    partial class RenomearTabelaUsuariosModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -116,7 +116,7 @@ namespace Biblioteca.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UsuarioModel");
+                    b.ToTable("UsuarioModel", (string)null);
                 });
 #pragma warning restore 612, 618
         }

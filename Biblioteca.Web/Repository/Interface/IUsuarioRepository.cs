@@ -9,6 +9,6 @@ namespace Biblioteca.Web.Repository.Interface
         Task<string?> GerarTokenRedefinicaoAsync(string email);
         Task<UsuarioModel?> BuscarPorTokenAsync(string token);
         Task<bool> AtualizarUsuarioSenhaAsync(UsuarioModel usuarioAtualizado);
-        string CriptografarSenha(string senha);
+        Task<string> CriptografarSenha(string novaSenha);
     }
 }

@@ -2,6 +2,7 @@
 using Biblioteca.Web.Models;
 using Biblioteca.Web.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.JSInterop.Infrastructure;
 
 namespace Biblioteca.Web.Repository
 {
@@ -64,9 +65,9 @@ namespace Biblioteca.Web.Repository
             return usuario.TokenRedefinicao;
         }
 
-        public string CriptografarSenha(string senha)
+        public async Task<string> CriptografarSenha(string novaSenha)
         {
-            return BCrypt.Net.BCrypt.HashPassword(senha);
+            return await Task.Run(() => BCrypt.Net.BCrypt.HashPassword(novaSenha)); //BCrypt.Net.BCrypt.HashPassword(novaSenha);
         }
 
         public async Task<UsuarioModel?> BuscarPorTokenAsync(string token)

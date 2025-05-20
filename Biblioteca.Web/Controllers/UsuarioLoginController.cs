@@ -1,5 +1,6 @@
-using Biblioteca.Servico.model;
 using Biblioteca.Servico.Servicos;
+using Biblioteca.Web.Models;
+using Biblioteca.Web.Repository.Interface;
 using Biblioteca.Web.Sessao;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,22 +8,25 @@ namespace Biblioteca.Web.Controllers;
 
 public class UsuarioLoginController : Controller
 {
-    private readonly GerenciadorDeUsuarios _gerenciadorDeUsuarios;
     private readonly GerenciadorDeSessao _sessao;
 
     private readonly EmailServico _servicoEmail;
+    private readonly IUsuarioRepository _iusuarioRepository;
 
-    public UsuarioLoginController(GerenciadorDeUsuarios gerenciadorDeUsuarios, GerenciadorDeSessao sessao, EmailServico servicoEmail)
+    public UsuarioLoginController(
+    GerenciadorDeSessao sessao, EmailServico servicoEmail,
+    IUsuarioRepository usuarioRepository
+    )
     {
-        _gerenciadorDeUsuarios = gerenciadorDeUsuarios;
         _sessao = sessao;
         _servicoEmail = servicoEmail;
+        _iusuarioRepository = usuarioRepository;
     }
 
     [HttpGet]
     public IActionResult Index()
     {
-        //Se usuario estiver loogado, redirecionar para home
+
         if (_sessao.BuscarSessaoUsuario() != null)
         {
             return RedirectToAction("Index", "Livro");
@@ -39,12 +43,12 @@ public class UsuarioLoginController : Controller
             return RedirectToAction("Index");
         }
 
-        UsuarioModel? usuario = await _gerenciadorDeUsuarios.loginAsync(email, senhaHas);
+        UsuarioModel? usuario = await _iusuarioRepository.LoginAsync(email, senhaHas);
 
         if (usuario != null)
         {
             _sessao.CriarSessaoDoUsuario(usuario);
-            HttpContext.Session.SetString("UsuarioId", usuario.Id.ToString());//Guardando o id do usuario na sessão
+            HttpContext.Session.SetString("UsuarioId", usuario.Id.ToString());
             return RedirectToAction("Index", "Livro");
         }
         else
@@ -63,7 +67,7 @@ public class UsuarioLoginController : Controller
             return RedirectToAction("Index");
         }
 
-        bool novoUsuario = await _gerenciadorDeUsuarios.registrarUsuarioAsync(nome, email, senhaHas);
+        bool novoUsuario = await _iusuarioRepository.RegistrarUsuarioAsync(nome, email, senhaHas);
 
         if (novoUsuario)
         {
@@ -85,8 +89,7 @@ public class UsuarioLoginController : Controller
     [HttpPost]
     public async Task<IActionResult> SolicitarRedeFiniSenha(string email)
     {
-
-        var token = await _gerenciadorDeUsuarios.GerarTokenRedefinicaoAsync(email);
+        var token = await _iusuarioRepository.GerarTokenRedefinicaoAsync(email);
 
         if (token != null)
         {
@@ -108,8 +111,7 @@ public class UsuarioLoginController : Controller
     [HttpGet]
     public async Task<IActionResult> RedefinirSenha(string token)
     {
-
-        var usuario = await _gerenciadorDeUsuarios.BuscarPorTokenAsync(token);
+        var usuario = await _iusuarioRepository.BuscarPorTokenAsync(token);
 
         if (usuario == null)
         {
@@ -131,7 +133,7 @@ public class UsuarioLoginController : Controller
             return View();
         }
 
-        var usuario = await _gerenciadorDeUsuarios.BuscarPorTokenAsync(token);
+        var usuario = await _iusuarioRepository.BuscarPorTokenAsync(token);
 
         if (usuario == null)
         {
@@ -139,11 +141,11 @@ public class UsuarioLoginController : Controller
             return RedirectToAction("SolicitarRedefinicao");
         }
 
-        usuario.SenhaHas = await _gerenciadorDeUsuarios.CriptografarSenha(novaSenha);
+        usuario.SenhaHas = await _iusuarioRepository.CriptografarSenha(novaSenha);
         usuario.TokenRedefinicao = null;
         usuario.TokenExperiracao = null;
 
-        await _gerenciadorDeUsuarios.AtualizarUsuarioSenhaAsync(usuario);
+        await _iusuarioRepository.AtualizarUsuarioSenhaAsync(usuario);
 
         TempData["MensagemSucesso"] = "Senha redefinida com sucesso!";
         return RedirectToAction("Index");
@@ -156,25 +158,5 @@ public class UsuarioLoginController : Controller
 
         return RedirectToAction("Index", "UsuarioLogin");
     }
-
-    /*[HttpPost]
-    public async Task<IActionResult> RedefinirSenha(RedefinirSenhaModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            TempData["MensagemErro"] = "Verifique os campos e tente novamente.";
-            return View(model);
-        }
-
-        var usuario = await _gerenciadorDeUsuarios.BuscarPorEmailAsync(model.Email);
-
-        usuario.SenhaHas = await _gerenciadorDeUsuarios.CriptografarSenha(model.NovaSenha);
-
-        await _gerenciadorDeUsuarios.AtualizarUsuarioSenhaAsync(usuario);
-
-        TempData["MensagemSucesso"] = "Senha redefinida com sucesso! Você já pode fazer login.";
-        return RedirectToAction("Index", "Livro");
-    }*/
-
 }
 
