@@ -18,6 +18,9 @@ public class LivroModel
     public string? Avaliacao { get; set; } = string.Empty;
     public string? NumeroPaginas { get; set; } = string.Empty;
     public string? UsuarioId { get; set; } = string.Empty;
+    public bool Favorito { get; set; } = false;
+
+
 
     // Lista para armazenar trechos favoritos do livro
     public List<string>? TrechosFavoritos { get; set; } = new List<string>();

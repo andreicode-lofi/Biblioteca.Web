@@ -29,8 +29,6 @@ namespace Biblioteca.Web.Sessao
 
         public void RemoveSessaoUsuario()
         {
-
-            //_httpContext.HttpContext?.Session.Remove("sessaoUsuarioLogado");
             _httpContext.HttpContext?.Session.Clear(); // Remove todos os dados da sessão
             _httpContext.HttpContext?.Response.Cookies.Delete(".AspNetCore.Session");
         }

@@ -1,8 +1,8 @@
-//using System.Runtime.InteropServices.Marshalling;
 using Biblioteca.Web.Models;
 using Biblioteca.Web.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.JSInterop.Infrastructure;
+using X.PagedList;
 using X.PagedList.Extensions;
 
 namespace Biblioteca.Web.Controllers;
@@ -77,6 +77,7 @@ public class LivroController : Controller
                 Comentarios = _ilivroRepository.RemoverAcentos(model.Comentarios ?? "").ToLower(),
                 Avaliacao = model.Avaliacao,
                 NumeroPaginas = model.NumeroPaginas,
+                Favorito = model.Favorito,
                 TrechosFavoritos = model.TrechosFavoritos
             };
             await _ilivroRepository.AddLivroAsync(livro, usuarioId);
@@ -134,13 +135,29 @@ public class LivroController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Details(string id)
+    public async Task<IActionResult> Details(string id, int? page)
     {
         var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
         var livro = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livro == null)
             return Unauthorized();
+
+        int pageSize = 5;
+        int pageNumber = page ?? 1;
+
+        IPagedList<string> trechosPaginados = new List<string>().ToPagedList(pageNumber, pageSize);
+
+        if(livro.TrechosFavoritos != null && livro.TrechosFavoritos.Any())
+        {
+            trechosPaginados = livro.TrechosFavoritos
+                .OrderBy(t => t)
+                .ToPagedList(pageNumber, pageSize);
+        }
+
+        ViewData["TrechoPage"] = trechosPaginados.PageNumber;
+        ViewData["TrechoTotalPages"] = trechosPaginados.PageCount;
+        ViewData["TrechosPaginados"] = trechosPaginados;
 
         return View(livro);
     }
@@ -210,4 +227,24 @@ public class LivroController : Controller
         await _ilivroRepository.UpdateAsync(id, livro, usuarioId);
         return RedirectToAction("Index");
     }
+
+    [HttpGet("MeusFavoritos")]
+    public async Task<IActionResult> MeusFavoritos()
+    {
+        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+        if (string.IsNullOrEmpty(usuarioId))
+            return RedirectToAction("Login", "Usuario");
+
+        var favoritos = await _ilivroRepository.ObterFavoritosDoUsuarioAsync(usuarioId);
+
+        if (!favoritos.Any())
+        {
+            ViewBag.Mensagem = "Você ainda não marcou nenhum livro como favorito.";
+        }
+
+        return View("MeusFavoritos", favoritos);
+    }
+
+
+
 }

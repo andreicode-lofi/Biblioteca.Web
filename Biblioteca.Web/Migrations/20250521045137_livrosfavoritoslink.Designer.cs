@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Biblioteca.Web.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250519160437_RenomearTabelaUsuariosModel")]
-    partial class RenomearTabelaUsuariosModel
+    [Migration("20250521045137_livrosfavoritoslink")]
+    partial class livrosfavoritoslink
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace Biblioteca.Web.Migrations
 
                     b.Property<string>("Comentarios")
                         .HasColumnType("text");
+
+                    b.Property<bool>("Favorito")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Genero")
                         .HasColumnType("text");

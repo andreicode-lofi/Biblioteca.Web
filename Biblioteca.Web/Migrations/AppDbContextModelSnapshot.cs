@@ -36,6 +36,9 @@ namespace Biblioteca.Web.Migrations
                     b.Property<string>("Comentarios")
                         .HasColumnType("text");
 
+                    b.Property<bool>("Favorito")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Genero")
                         .HasColumnType("text");
 

@@ -76,6 +76,7 @@ namespace Biblioteca.Web.Repository
             livroExistente.Comentarios = livro.Comentarios;
             livroExistente.Avaliacao = livro.Avaliacao;
             livroExistente.NumeroPaginas = livro.NumeroPaginas;
+            livroExistente.Favorito = livro.Favorito;
 
             // Atualiza os trechos favoritos
             livroExistente.TrechosFavoritos = livro.TrechosFavoritos;
@@ -98,6 +99,13 @@ namespace Biblioteca.Web.Repository
             }
 
             return builder.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+        public async Task<IEnumerable<LivroModel>> ObterFavoritosDoUsuarioAsync(string usuarioId)
+        {
+            return await _context.Livros
+                .Where(l => l.UsuarioId == usuarioId && l.Favorito)
+                .ToListAsync();
         }
     }
 }
