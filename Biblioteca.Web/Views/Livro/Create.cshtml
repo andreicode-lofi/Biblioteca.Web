@@ -1,7 +1,7 @@
 @model Biblioteca.Web.Models.LivroModel
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Cadastrar Novo Livro</h1>
+    <h1 class="text-center fw-bold text-primary mb-4">📦 Acabou de Chegar: Novo Livro na Coleção!</h1>
     <form method="post" asp-action="Create" asp-controller="Livro" enctype="multipart/form-data" class="mb-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -16,8 +16,12 @@
                             <img id="imagePreview" class="card-img-top" style="width: 100%; height: 250px; object-fit: cover;">
                             <div class="mt-2">
                                 <label for="Imagem" class="form-label">Imagem do Livro</label>
-                                <input type="file" class="form-control" id="imageInput" name="foto" onchange="previewImage(event)"
-                                    accept="image/*" required>
+                                <input type="file" class="form-control" id="imageInput" name="foto" onchange="previewImage(event)" accept="image/png, image/jpeg" required>
+                                @if (ViewBag.ErroImagem != null)
+                                {
+                                    <span class="text-danger">@ViewBag.ErroImagem</span>
+                                }
+
                             </div>
                         </div>
 

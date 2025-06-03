@@ -5,12 +5,16 @@
 }
 
 <div class="banner text-center text-white d-flex align-items-center justify-content-center">
-    <h1>L i t m a p</h1>
+    <h1 class="display-3 fw-bold text-uppercase m-0">Litmap</h1>
 </div>
 
 <div class="container mt-5 mb-5">
-    <div class="d-flex justify-content-between mb-4">
-        <h2 class="discord-color">Catálogo de Livros</h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex flex-column">
+            <h2 class="discord-color fw-bold text-primary mb-2">Bem-vindo ao seu catálogo de Livros</h2>
+            <p class="text-muted mb-0">Que bom te ver aqui, organize e compartilhe seus livros favoritos.</p>
+        </div>
         <a class="btn btn-primary" asp-controller="Livro" asp-action="Create">Criar Livro</a>
     </div>
 

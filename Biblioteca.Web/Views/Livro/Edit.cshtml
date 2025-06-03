@@ -1,7 +1,7 @@
 ﻿@model Biblioteca.Web.Models.LivroModel
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Editar Livro</h1>
+    <h1 class="text-center fw-bold text-primary mb-4">✏️ Ajustar Detalhes do Livro</h1>
     <form method="post" asp-action="Edit" asp-controller="Livro" enctype="multipart/form-data" class="mb-5">
 
         <input type="hidden" asp-for="Id" /> <!-- Campo oculto para o ID do livro -->
@@ -60,6 +60,13 @@
                                    placeholder="Digite o ano de publicação" required>
                         </div>
 
+                        <!-- Número de Páginas (agora texto) -->
+                        <div class="form-group text-start mb-3">
+                            <label for="NumeroPaginas" class="form-label">Número de Páginas</label>
+                            <input type="text" class="form-control form-control-sm" id="NumeroPaginas" asp-for="NumeroPaginas"
+                                   placeholder="Digite o número de páginas">
+                        </div>
+
                         <!-- Favoritos -->
                         <div class="form-check mb-4">
                             <input type="checkbox" class="form-check-input" id="Favorito" asp-for="Favorito">
@@ -71,7 +78,6 @@
                             <input type="checkbox" class="form-check-input" id="LivroFinalizado" asp-for="LivroFinalizado">
                             <label class="form-check-label" for="LivroFinalizado">Livro Finalizado</label>
                         </div>
-
                     </div>
 
                     <!-- Coluna Direita -->
@@ -86,7 +92,7 @@
 
                         <!-- Comentários -->
                         <div class="form-group text-start mb-3">
-                            <label for="Comentarios" class="form-label">Comentários</label>
+                            <label for="Comentarios" class="form-label">Escreva um comentário sobre o livro.</label>
                             <textarea class="form-control form-control-md" id="Comentarios" asp-for="Comentarios"
                                       placeholder="Adicione comentários sobre o livro"></textarea>
                         </div>
@@ -104,16 +110,9 @@
                             </select>
                         </div>
 
-                        <!-- Número de Páginas (agora texto) -->
-                        <div class="form-group text-start mb-3">
-                            <label for="NumeroPaginas" class="form-label">Número de Páginas</label>
-                            <input type="text" class="form-control form-control-sm" id="NumeroPaginas" asp-for="NumeroPaginas"
-                                   placeholder="Digite o número de páginas">
-                        </div>
-
                         <!-- Trechos Favoritos -->
                         <div class="form-group text-start mb-3">
-                            <label for="TrechosFavoritos" class="form-label">Trechos Favoritos</label>
+                            <label for="TrechosFavoritos" class="form-label">Escreva os trechos que marcaram sua leitura.</label>
                             <div id="trechosContainer">
                                 @if (Model.TrechosFavoritos != null)
                                 {

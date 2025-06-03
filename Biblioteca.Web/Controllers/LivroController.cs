@@ -1,7 +1,7 @@
 using Biblioteca.Web.Models;
 using Biblioteca.Web.Repository.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.JSInterop.Infrastructure;
 using X.PagedList;
 using X.PagedList.Extensions;
 
@@ -60,6 +60,14 @@ public class LivroController : Controller
         var usuarioId = HttpContext.Session.GetString("UsuarioId");
         if (usuarioId == null) return RedirectToAction("Login", "Index");
 
+        const long tamanhoMaximoBytesImg = 128 * 1024;
+
+        if(foto.Length > tamanhoMaximoBytesImg)
+        {
+            ViewBag.ErroImagem = "O tamanho da imagem deve ser menor que 120 KB.";
+            return View(model);
+        }
+
         if (foto != null)
         {
             var caminhoImagem = await GeradorImagemAsync(foto);
@@ -73,8 +81,8 @@ public class LivroController : Controller
                 LivroFinalizado = model.LivroFinalizado,
                 Imagem = caminhoImagem,
                 ano = model.ano,
-                Sinopese = _ilivroRepository.RemoverAcentos(model.Sinopese ?? "").ToLower(),
-                Comentarios = _ilivroRepository.RemoverAcentos(model.Comentarios ?? "").ToLower(),
+                Sinopese = model.Sinopese,
+                Comentarios = model.Comentarios,
                 Avaliacao = model.Avaliacao,
                 NumeroPaginas = model.NumeroPaginas,
                 Favorito = model.Favorito,
@@ -143,7 +151,7 @@ public class LivroController : Controller
         if (livro == null)
             return Unauthorized();
 
-        int pageSize = 5;
+        int pageSize = 2;
         int pageNumber = page ?? 1;
 
         IPagedList<string> trechosPaginados = new List<string>().ToPagedList(pageNumber, pageSize);
@@ -228,10 +236,12 @@ public class LivroController : Controller
         return RedirectToAction("Index");
     }
 
-    [HttpGet("MeusFavoritos")]
-    public async Task<IActionResult> MeusFavoritos()
+
+    [AllowAnonymous]
+    [HttpGet("Livro/MeusFavoritos/{usuarioId}")]
+    public async Task<IActionResult> MeusFavoritos(string usuarioId)
     {
-        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+        
         if (string.IsNullOrEmpty(usuarioId))
             return RedirectToAction("Login", "Usuario");
 
@@ -245,6 +255,33 @@ public class LivroController : Controller
         return View("MeusFavoritos", favoritos);
     }
 
+    [AllowAnonymous]
+    [HttpGet("Livro/MeusFavoritosDetails/{usuarioId}/{id}")]
+    public async Task<IActionResult>MeusFavoritosDetails(string id, string usuarioId, int? page)
+    {
+        
+        var livro = await _ilivroRepository.GetByIdAsync(id, usuarioId);
+
+        if (livro == null)
+            return NotFound("Livro não encontrado ou não pertence ao usuário informado.");
 
 
+        int pageSize = 1;
+        int pageNumber = page ?? 1;
+
+        IPagedList<string> trechosPaginados = new List<string>().ToPagedList(pageNumber, pageSize);
+
+        if (livro.TrechosFavoritos != null && livro.TrechosFavoritos.Any())
+        {
+            trechosPaginados = livro.TrechosFavoritos
+                .OrderBy(t => t)
+                .ToPagedList(pageNumber, pageSize);
+        }
+
+        ViewData["TrechoPage"] = trechosPaginados.PageNumber;
+        ViewData["TrechoTotalPages"] = trechosPaginados.PageCount;
+        ViewData["TrechosPaginados"] = trechosPaginados;
+
+        return View(livro);
+    }
 }

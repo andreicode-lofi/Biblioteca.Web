@@ -9,7 +9,6 @@ namespace Biblioteca.Web.Controllers;
 public class UsuarioLoginController : Controller
 {
     private readonly GerenciadorDeSessao _sessao;
-
     private readonly EmailServico _servicoEmail;
     private readonly IUsuarioRepository _iusuarioRepository;
 
@@ -77,6 +76,33 @@ public class UsuarioLoginController : Controller
         {
             TempData["Erro"] = "Erro ao registrar sua conta!";
             return RedirectToAction("Index");
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ExcluirUsuario()
+    {
+        var usuarioId = HttpContext.Session.GetString("UsuarioId");
+
+        if (string.IsNullOrEmpty(usuarioId))
+        {
+            TempData["Erro"] = "Usuário não está logado.";
+            return RedirectToAction("Index", "Login");
+        }
+
+        var sucesso = await _iusuarioRepository.ExcluirUsuarioAsync(usuarioId);
+
+        if (sucesso)
+        {
+            // Limpa a sessão após exclusão
+            HttpContext.Session.Clear();
+            TempData["Sucesso"] = "Conta excluída com sucesso.";
+            return RedirectToAction("Index", "UsuarioLogin");
+        }
+        else
+        {
+            TempData["Erro"] = "Erro ao excluir sua conta.";
+            return RedirectToAction("Index", "Livro");
         }
     }
 

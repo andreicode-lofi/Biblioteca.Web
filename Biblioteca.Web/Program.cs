@@ -28,13 +28,9 @@ builder.Services.AddHttpContextAccessor(); // Para usar IHttpContextAccessor
 //=================================================================================
 
 
-
-//Servicos biblioteca json=========================================================
+//Servicos e repositorios =========================================================
 builder.Services.AddScoped<GerenciadorDeSessao>();
-//builder.Services.AddScoped<GerenciadorDeUsuarios>();
 builder.Services.AddScoped<EmailServico>();
-builder.Services.AddSingleton<BackupLivro>();
-
 builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 //=================================================================================
@@ -67,13 +63,6 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 
-
-//Execute backuo====================================================================
-using (var escopo = app.Services.CreateScope())
-{
-    var backupService = escopo.ServiceProvider.GetRequiredService<BackupLivro>();
-    backupService.CriarBackup();
-}
 //====================================================================================
 /*var url = "http://localhost:5000";
 Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });*/

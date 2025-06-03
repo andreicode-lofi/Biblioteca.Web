@@ -13,6 +13,11 @@
 </head>
 
 <body>
+
+    @{
+        var usuarioId = Context.Session.GetString("UsuarioId");
+    }
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -31,8 +36,6 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Livro" asp-action="Create">Criar
                                 Livro</a>
                         </li>
-
-
                     </ul>
                     <ul class="navbar-nav">
                         <!-- Dropdown do usuário -->
@@ -42,19 +45,19 @@
                                 Opções
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <!--<li><a class="dropdown-item" asp-area="" asp-controller="Usuario"
-                                        asp-action="Perfil">Meu Perfil</a></li>-->
+
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Livro" asp-action="MeusFavoritos"> Compartilhar Meus Livros favoritos</a></li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Livro" asp-action="MeusFavoritos" asp-route-usuarioId="@usuarioId" target="_blank"> Compartilhar Meus Livros favoritos</a>
+                                </li>
 
-
-
-                                <li class="nav-item">
-                                    <form method="post" asp-controller="Backup" asp-action="Restaurar">
-                                        <button type="submit" class="nav-link text-white">Restaurar último
-                                            backup</button>
+                                <li>
+                                    <form asp-area="" asp-controller="UsuarioLogin" asp-action="ExcluirUsuario" method="post" onsubmit="return confirmarExclusaoUsuario();">
+                                        <button type="submit" class="dropdown-item text-danger" style="background: none; border: none; padding: 0; margin: 0;">
+                                            Excluir minha conta
+                                        </button>
                                     </form>
                                 </li>
+
                             </ul>
                         </li>
                         <!-- Botão de Logout -->
@@ -81,6 +84,13 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        function confirmarExclusaoUsuario() {
+            return confirm("Tem certeza de que deseja excluir sua conta? Esta ação é irreversível e todos os seus dados serão apagados.");
+        }
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

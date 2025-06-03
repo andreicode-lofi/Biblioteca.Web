@@ -91,7 +91,7 @@ namespace Biblioteca.Web.Repository
             var normalized = pesquisa.Normalize(System.Text.NormalizationForm.FormD);
             var builder = new StringBuilder();
 
-            foreach (var item in pesquisa)
+            foreach (var item in normalized)
             {
                 var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(item);
                 if (unicodeCategory != UnicodeCategory.NonSpacingMark)

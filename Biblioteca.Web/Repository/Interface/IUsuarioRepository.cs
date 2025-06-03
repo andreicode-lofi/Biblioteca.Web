@@ -6,6 +6,7 @@ namespace Biblioteca.Web.Repository.Interface
     {
         Task<UsuarioModel?> LoginAsync(string email, string senha);
         Task<bool> RegistrarUsuarioAsync(string nome, string email, string senha);
+        Task<bool> ExcluirUsuarioAsync(string usuarioId);
         Task<string?> GerarTokenRedefinicaoAsync(string email);
         Task<UsuarioModel?> BuscarPorTokenAsync(string token);
         Task<bool> AtualizarUsuarioSenhaAsync(UsuarioModel usuarioAtualizado);

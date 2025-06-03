@@ -2,7 +2,7 @@
 using Biblioteca.Web.Models;
 using Biblioteca.Web.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.JSInterop.Infrastructure;
+//using Microsoft.JSInterop.Infrastructure;
 
 namespace Biblioteca.Web.Repository
 {
@@ -45,6 +45,39 @@ namespace Biblioteca.Web.Repository
             };
 
             _context.Usuarios.Add(novoUsuario);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool>ExcluirUsuarioAsync(string usuarioId)
+        {
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == usuarioId);
+
+            if (usuario == null)
+                return false;
+
+            var livrosDoUsuario = await _context.Livros
+                .Where(l => l.UsuarioId == usuarioId)
+                .ToListAsync();
+
+            // Excluir imagens dos livros
+            foreach (var livro in livrosDoUsuario)
+            {
+                if (!string.IsNullOrEmpty(livro.Imagem))
+                {
+                    string caminhoImagem = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", livro.Imagem);
+
+                    if (System.IO.File.Exists(caminhoImagem))
+                    {
+                        System.IO.File.Delete(caminhoImagem);
+                    }
+                }
+            }
+
+            _context.Livros.RemoveRange(livrosDoUsuario);
+
+            _context.Usuarios.Remove(usuario);
+
             await _context.SaveChangesAsync();
             return true;
         }

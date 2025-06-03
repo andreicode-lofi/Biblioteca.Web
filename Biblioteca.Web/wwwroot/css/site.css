@@ -33,7 +33,7 @@ body {
 /*----------------------------banner----------------------------------------*/
 .banner {
   position: relative; /* Para permitir o uso do pseudo-elemento */
-  background: url('/images/banner.jpg') no-repeat center center;
+  background: url('/images/banner.png') no-repeat center center;
   background-size: cover;
   min-height: 300px; 
   width: 100%;
