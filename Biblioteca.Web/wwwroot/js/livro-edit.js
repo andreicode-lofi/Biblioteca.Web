@@ -14,6 +14,18 @@ function previewImage(event) {
 // Adicionar trechos
 function adicionarTrecho() {
     var container = document.getElementById('trechosContainer');
+
+    // Verifica se o último input está vazio
+    var inputs = container.querySelectorAll('input[name="TrechosFavoritos[]"]');
+    if (inputs.length > 0) {
+        var ultimoInput = inputs[inputs.length - 1];
+        if (ultimoInput.value.trim() === "") {
+            alert("Preencha o trecho anterior antes de adicionar outro.");
+            ultimoInput.focus();
+            return;
+        }
+    }
+
     var trechoDiv = document.createElement("div");
     trechoDiv.className = "input-group mb-2 trecho-item";
 
@@ -35,6 +47,7 @@ function adicionarTrecho() {
     trechoDiv.appendChild(botaoRemover);
     container.appendChild(trechoDiv);
 }
+
 
 function removerTrecho(botao) {
     botao.parentElement.remove();

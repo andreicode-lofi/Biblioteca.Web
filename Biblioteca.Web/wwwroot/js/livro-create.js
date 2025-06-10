@@ -10,32 +10,40 @@
         }
     }
 
-    // Adicionar mais trechos favoritos dinamicamente
-    function adicionarTrecho() {
-        var container = document.getElementById('trechosContainer');
-        var div = document.createElement("div");
-        div.className = "input-group mb-2";
-        
-        var novoInput = document.createElement("input");
-        novoInput.type = "text";
-        novoInput.name = "TrechosFavoritos[]";
-        novoInput.className = "form-control";
-        novoInput.placeholder = "Adicione um trecho";
-        
-        var botaoRemover = document.createElement("button");
-        botaoRemover.type = "button";
-        botaoRemover.className = "btn btn-danger";
-        botaoRemover.textContent = "X";
-        botaoRemover.onclick = function () { removerTrecho(botaoRemover); };
-        
-        div.appendChild(novoInput);
-        div.appendChild(botaoRemover);
-        container.appendChild(div);
+// Adicionar mais trechos favoritos dinamicamente
+function adicionarTrecho() {
+    var container = document.getElementById('trechosContainer');
+
+    // Verifica o último input existente
+    var inputs = container.querySelectorAll('input[name="TrechosFavoritos[]"]');
+    if (inputs.length > 0) {
+        var ultimoInput = inputs[inputs.length - 1];
+        if (ultimoInput.value.trim() === "") {
+            alert("Preencha o trecho anterior antes de adicionar outro.");
+            ultimoInput.focus();
+            return;
+        }
     }
 
-    function removerTrecho(botao) {
-        botao.parentElement.remove();
-    }
+    var div = document.createElement("div");
+    div.className = "input-group mb-2";
+
+    var novoInput = document.createElement("input");
+    novoInput.type = "text";
+    novoInput.name = "TrechosFavoritos[]";
+    novoInput.className = "form-control";
+    novoInput.placeholder = "Adicione um trecho";
+
+    var botaoRemover = document.createElement("button");
+    botaoRemover.type = "button";
+    botaoRemover.className = "btn btn-danger";
+    botaoRemover.textContent = "X";
+    botaoRemover.onclick = function () { removerTrecho(botaoRemover); };
+
+    div.appendChild(novoInput);
+    div.appendChild(botaoRemover);
+    container.appendChild(div);
+}
 
 
 //enviando dados do googleBooks para o endpoint create livro.
