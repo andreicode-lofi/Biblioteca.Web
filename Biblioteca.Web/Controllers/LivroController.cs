@@ -11,12 +11,14 @@ public class LivroController : Controller
 {
     private readonly ILogger<LivroController> _logger;
     private readonly ILivroRepository _ilivroRepository;
+    private readonly IGoogleBooksService _iGoogleBooksService;
     private readonly string? _caminhoImagem;
 
-    public LivroController(ILogger<LivroController> logger, ILivroRepository livroRepository)
+    public LivroController(ILogger<LivroController> logger, ILivroRepository livroRepository, IGoogleBooksService googleBooksService)
     {
         _logger = logger;
         _ilivroRepository = livroRepository;
+        _iGoogleBooksService = googleBooksService;
     }
 
     [HttpGet]
@@ -62,37 +64,70 @@ public class LivroController : Controller
 
         const long tamanhoMaximoBytesImg = 128 * 1024;
 
-        if(foto.Length > tamanhoMaximoBytesImg)
-        {
-            ViewBag.ErroImagem = "O tamanho da imagem deve ser menor que 120 KB.";
-            return View(model);
-        }
+        string caminhoImagem = null;
 
-        if (foto != null)
+        //se a imagem for via IformFile
+        if (foto != null && foto.Length> 0)
         {
-            var caminhoImagem = await GeradorImagemAsync(foto);
-
-            var livro = new LivroModel
+            if(foto.Length > tamanhoMaximoBytesImg)
             {
-                Name = _ilivroRepository.RemoverAcentos(model.Name ?? "").ToLower(),
-                Autor = _ilivroRepository.RemoverAcentos(model.Autor ?? "").ToLower(),
-                Genero = _ilivroRepository.RemoverAcentos(model.Genero ?? "").ToLower(),
-                Idioma = _ilivroRepository.RemoverAcentos(model.Idioma ?? "").ToLower(),
-                LivroFinalizado = model.LivroFinalizado,
-                Imagem = caminhoImagem,
-                ano = model.ano,
-                Sinopese = model.Sinopese,
-                Comentarios = model.Comentarios,
-                Avaliacao = model.Avaliacao,
-                NumeroPaginas = model.NumeroPaginas,
-                Favorito = model.Favorito,
-                TrechosFavoritos = model.TrechosFavoritos
-            };
-            await _ilivroRepository.AddLivroAsync(livro, usuarioId);
+                ViewBag.ErroImagem = "O tamanho da imagem deve ser menor que 120 KB.";
+                return View(model);
+            }
 
-            return RedirectToAction("Index");
+            caminhoImagem = await GeradorImagemAsync(foto);
         }
-        return View();
+
+        //Se a imagem for via link api googleBooks
+
+        if (string.IsNullOrEmpty(caminhoImagem) && !string.IsNullOrEmpty(model.Imagem))
+        {
+            caminhoImagem = model.Imagem;
+        }
+       
+
+        var livro = new LivroModel
+        {
+            Name = _ilivroRepository.RemoverAcentos(model.Name ?? "").ToLower(),
+            Autor = _ilivroRepository.RemoverAcentos(model.Autor ?? "").ToLower(),
+            Genero = _ilivroRepository.RemoverAcentos(model.Genero ?? "").ToLower(),
+            Idioma = _ilivroRepository.RemoverAcentos(model.Idioma ?? "").ToLower(),
+            LivroFinalizado = model.LivroFinalizado,
+            Imagem = caminhoImagem,
+            ano = model.ano,
+            Sinopese = model.Sinopese,
+            Comentarios = model.Comentarios,
+            Avaliacao = model.Avaliacao,
+            NumeroPaginas = model.NumeroPaginas,
+            Favorito = model.Favorito,
+            TrechosFavoritos = model.TrechosFavoritos
+        };
+            await _ilivroRepository.AddLivroAsync(livro, usuarioId);
+            return RedirectToAction("Index");
+    }
+
+    [HttpGet("Livro/BuscarPorNome")]
+    public async Task<IActionResult> BuscarPorNome(string nome)
+    {
+        if (string.IsNullOrWhiteSpace(nome)) return BadRequest("Nome inválido");
+
+        var livroEncontrado = await _iGoogleBooksService.BuscarDadosDoLivroAsync(nome);
+
+        if(livroEncontrado == null)
+        {
+            return NotFound("Livro não encontradoooo. Preencha os dados manualmente.");
+        }
+
+        return Ok(new
+        {
+            name = livroEncontrado.Name,
+            autor = livroEncontrado.Autor,
+            genero = livroEncontrado.Genero,
+            sinopese = livroEncontrado.Sinopese,
+            imagem = livroEncontrado.Imagem,
+            numeroPaginas = livroEncontrado.NumeroPaginas,
+            ano = livroEncontrado.ano
+        });
     }
 
     public async Task<string> GeradorImagemAsync(IFormFile foto)
@@ -187,7 +222,6 @@ public class LivroController : Controller
     public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto, List<string> trechosFavoritos)
     {
         var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
-
         var livroOriginal = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livroOriginal == null)
@@ -195,10 +229,21 @@ public class LivroController : Controller
             TempData["Erro"] = "Livro não encontrado!";
             return RedirectToAction("Index");
         }
-        //---------------------------------------------------
+
+        const long tamanhoMaximoBytesImg = 128 * 1024;
+        string caminhoImagem = null;
+
+        // Se a imagem for via IFormFile
         if (foto != null && foto.Length > 0)
         {
-            if (!string.IsNullOrEmpty(livroOriginal.Imagem))
+            if (foto.Length > tamanhoMaximoBytesImg)
+            {
+                ViewBag.ErroImagem = "O tamanho da imagem deve ser menor que 120 KB.";
+                return View(livroOriginal);
+            }
+
+            // Remove imagem antiga do disco (se existir)
+            if (!string.IsNullOrEmpty(livroOriginal.Imagem) && !livroOriginal.Imagem.StartsWith("http"))
             {
                 string caminhoAntigo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", livroOriginal.Imagem.TrimStart('/'));
 
@@ -208,34 +253,28 @@ public class LivroController : Controller
                 }
             }
 
-            string caminhoImagem = await GeradorImagemAsync(foto);
-            livro.Imagem = caminhoImagem;
+            caminhoImagem = await GeradorImagemAsync(foto);
+        }
+        else if (!string.IsNullOrEmpty(livro.Imagem))
+        {
+            // Se imagem veio via link do formulário
+            caminhoImagem = livro.Imagem;
         }
         else
         {
-            livro.Imagem = Path.GetFileName(livroOriginal.Imagem);
+            // Nenhuma imagem nova, mantém a anterior
+            caminhoImagem = livroOriginal.Imagem;
         }
 
-        // Atualização trechos favoritos
-        //---------------------------------------------------
-        if (trechosFavoritos != null)
-        {
-            livro.TrechosFavoritos = trechosFavoritos.Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
-        }
-        else
-        {
-            livro.TrechosFavoritos = new List<string>();
-        }
-
+  
+        livro.Imagem = caminhoImagem;
         livro.Id = livroOriginal.Id;
         livro.UsuarioId = usuarioId;
-        livro.TrechosFavoritos = trechosFavoritos;
+        livro.TrechosFavoritos = trechosFavoritos?.Where(t => !string.IsNullOrWhiteSpace(t)).ToList() ?? new List<string>();
 
-        //atualiza
         await _ilivroRepository.UpdateAsync(id, livro, usuarioId);
         return RedirectToAction("Index");
     }
-
 
     [AllowAnonymous]
     [HttpGet("Livro/MeusFavoritos/{usuarioId}")]

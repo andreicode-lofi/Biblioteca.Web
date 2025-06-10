@@ -36,3 +36,59 @@
     function removerTrecho(botao) {
         botao.parentElement.remove();
     }
+
+
+//enviando dados do googleBooks para o endpoint create livro.
+document.addEventListener("DOMContentLoaded", function () {
+    const nomeInput = document.getElementById("Nome");
+    const autorInput = document.getElementById("Autor");
+    const generoInput = document.getElementById("Genero");
+    const anoInput = document.getElementById("ano");
+    const sinopseInput = document.getElementById("Sinopse");
+    const paginasInput = document.getElementById("NumeroPaginas");
+    const imagemInput = document.getElementById("imageInput");
+    const imagePreview = document.getElementById("imagePreview");
+    const imagemHidden = document.getElementById("Imagem"); // <- campo oculto para o link da imagem
+
+    const botaoBuscar = document.getElementById("btnBuscarLivro");
+
+    if (botaoBuscar) {
+        botaoBuscar.addEventListener("click", async function () {
+            const nomeLivro = nomeInput.value;
+
+            if (!nomeLivro.trim()) {
+                alert("Digite o nome do livro para buscar.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`/Livro/BuscarPorNome?nome=${encodeURIComponent(nomeLivro)}`);
+
+                if (!response.ok) {
+                    throw new Error("Livro não encontrado.");
+                }
+
+                const data = await response.json();
+
+                autorInput.value = data.autor || "";
+                generoInput.value = data.genero || "";
+                anoInput.value = data.ano || "";
+                sinopseInput.value = data.sinopese || "";
+                paginasInput.value = data.numeroPaginas || "";
+
+                // Exibe a imagem se vier da API e atualiza o campo hidden
+                if (data.imagem) {
+                    imagePreview.src = data.imagem;
+                    imagemHidden.value = data.imagem; // <- ESSENCIAL para enviar ao controller
+                } else {
+                    imagePreview.src = "";
+                    imagemHidden.value = "";
+                }
+
+            } catch (error) {
+                alert("Livro não encontradooo. Preencha os dados manualmente.");
+                console.error(error);
+            }
+        });
+    }
+});

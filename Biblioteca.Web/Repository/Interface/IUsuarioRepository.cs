@@ -11,5 +11,6 @@ namespace Biblioteca.Web.Repository.Interface
         Task<UsuarioModel?> BuscarPorTokenAsync(string token);
         Task<bool> AtualizarUsuarioSenhaAsync(UsuarioModel usuarioAtualizado);
         Task<string> CriptografarSenha(string novaSenha);
+        Task<int> ExcluirUsuariosInativosAsync();
     }
 }

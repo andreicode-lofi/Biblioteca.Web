@@ -1,7 +1,7 @@
 ﻿@model Biblioteca.Web.Models.LivroModel
 
 <div class="container mt-5">
-    <h1 class="text-center fw-bold text-primary mb-4">✏️ Ajustar Detalhes do Livro</h1>
+    <h1 class="text-center fw-bold text-primary mb-4">✏️ Ajustar Detalhes do Livro.</h1>
     <form method="post" asp-action="Edit" asp-controller="Livro" enctype="multipart/form-data" class="mb-5">
 
         <input type="hidden" asp-for="Id" /> <!-- Campo oculto para o ID do livro -->
@@ -10,74 +10,64 @@
             <div class="col-md-10">
 
                 <div class="row g-4">
-                    <!-- Adicionado espaçamento entre colunas -->
+                   
                     <!-- Coluna Esquerda -->
                     <div class="col-md-6">
 
+                        <input type="hidden" id="Imagem" name="Imagem" value="@(Model?.Imagem ?? "")" />
+
                         <!-- Card para imagem -->
-                        <div class="card mb-3 p-3">
-                            <img id="imagePreview" class="card-img-top" style="width: 100%; height: 250px; object-fit: cover;"
-                                 src="@(string.IsNullOrEmpty(Model.Imagem) ? "" : Url.Content("~/images/" + Model.Imagem))">
-                            <div class="mt-2">
-                                <label for="Imagem" class="form-label">Imagem do Livro</label>
-                                <input type="file" class="form-control" id="imageInput" name="foto" onchange="previewImage(event)"
-                                       accept="image/*">
+                        <div class="card mb-3 p-3" style="border: none; background-color: transparent; max-width: 230px; margin: 0 auto;">
+                            @{
+                                string imagemSrc = string.IsNullOrEmpty(Model.Imagem)
+                                ? ""
+                                : (Model.Imagem.StartsWith("http")
+                                ? Model.Imagem
+                                : Url.Content("~/images/" + Model.Imagem));
+                            }
+
+                            <div style="width: 100%; aspect-ratio: 2/3; background-color: #f0f0f0; border-radius: 8px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                                <img id="imagePreview"
+                                     src="@imagemSrc"
+                                     style="width: 100%; height: 100%; object-fit: cover; object-position: center;"
+                                     class="shadow" />
+                            </div>
+
+                            <div class="mt-3" style="width: 100%;">
+                                <label for="Imagem" class="form-label">Imagem do Livro.</label>
+                                <input type="file" class="form-control form-control-lg" id="imageInput" name="foto" onchange="previewImage(event)"
+                                       accept="image/*" style="width: 100%;">
                             </div>
                         </div>
 
                         <!-- Nome do Livro -->
                         <div class="form-group text-start mb-3">
-                            <label for="Nome" class="form-label">Nome do Livro</label>
+                            <label for="Nome" class="form-label">Nome do Livro.</label>
                             <input type="text" class="form-control form-control-lg" id="Nome" asp-for="Name"
                                    placeholder="Digite o nome do livro" required>
                         </div>
 
                         <!-- Autor -->
                         <div class="form-group text-start mb-3">
-                            <label for="Autor" class="form-label">Autor</label>
+                            <label for="Autor" class="form-label">Autor.</label>
                             <input type="text" class="form-control form-control-md" id="Autor" asp-for="Autor"
                                    placeholder="Digite o nome do autor" required>
                         </div>
 
                         <!-- Gênero -->
                         <div class="form-group text-start mb-3">
-                            <label for="Genero" class="form-label">Gênero</label>
+                            <label for="Genero" class="form-label">Gênero.</label>
                             <input type="text" class="form-control form-control-md" id="Genero" asp-for="Genero"
                                    placeholder="Digite o gênero do livro" required>
                         </div>
 
-                        <!-- Idioma -->
-                        <div class="form-group text-start mb-3">
-                            <label for="Idioma" class="form-label">Idioma</label>
-                            <input type="text" class="form-control form-control-md" id="Idioma" asp-for="Idioma"
-                                   placeholder="Digite o idioma do livro" required>
-                        </div>
-
                         <!-- Ano -->
                         <div class="form-group text-start mb-3">
-                            <label for="ano" class="form-label">Ano de Publicação</label>
+                            <label for="ano" class="form-label">Ano de Publicação.</label>
                             <input type="number" class="form-control form-control-sm" id="ano" asp-for="ano"
                                    placeholder="Digite o ano de publicação" required>
                         </div>
-
-                        <!-- Número de Páginas (agora texto) -->
-                        <div class="form-group text-start mb-3">
-                            <label for="NumeroPaginas" class="form-label">Número de Páginas</label>
-                            <input type="text" class="form-control form-control-sm" id="NumeroPaginas" asp-for="NumeroPaginas"
-                                   placeholder="Digite o número de páginas">
-                        </div>
-
-                        <!-- Favoritos -->
-                        <div class="form-check mb-4">
-                            <input type="checkbox" class="form-check-input" id="Favorito" asp-for="Favorito">
-                            <label class="form-check-label" for="Favorito">Marcar como favorito</label>
-                        </div>
-
-                        <!-- Livro Finalizado -->
-                        <div class="form-check mb-4">
-                            <input type="checkbox" class="form-check-input" id="LivroFinalizado" asp-for="LivroFinalizado">
-                            <label class="form-check-label" for="LivroFinalizado">Livro Finalizado</label>
-                        </div>
+                        
                     </div>
 
                     <!-- Coluna Direita -->
@@ -85,9 +75,28 @@
 
                         <!-- Sinopse -->
                         <div class="form-group text-start mb-3">
-                            <label for="Sinopse" class="form-label">Sinopse</label>
+                            <label for="Sinopse" class="form-label">Sinopse.</label>
                             <textarea class="form-control form-control-lg" id="Sinopse" asp-for="Sinopese"
                                       placeholder="Escreva um resumo do livro"></textarea>
+                        </div>
+
+                        <!-- Número de Páginas (agora texto) -->
+                        <div class="form-group text-start mb-3">
+                            <label for="NumeroPaginas" class="form-label">Número de Páginas.</label>
+                            <input type="text" class="form-control form-control-sm" id="NumeroPaginas" asp-for="NumeroPaginas"
+                                   placeholder="Digite o número de páginas">
+                        </div>
+
+                        <!-- Favoritos -->
+                        <div class="form-check mb-4">
+                            <input type="checkbox" class="form-check-input" id="Favorito" asp-for="Favorito">
+                            <label class="form-check-label" for="Favorito">Marcar como favorito.</label>
+                        </div>
+
+                        <!-- Livro Finalizado -->
+                        <div class="form-check mb-4">
+                            <input type="checkbox" class="form-check-input" id="LivroFinalizado" asp-for="LivroFinalizado">
+                            <label class="form-check-label" for="LivroFinalizado">Livro Finalizado.</label>
                         </div>
 
                         <!-- Comentários -->
@@ -99,7 +108,7 @@
 
                         <!-- Avaliação -->
                         <div class="form-group text-start mb-3">
-                            <label for="Avaliacao" class="form-label">Avaliação</label>
+                            <label for="Avaliacao" class="form-label">Avaliação.</label>
                             <select class="form-control form-control-md" id="Avaliacao" asp-for="Avaliacao">
                                 <option value="">Selecione uma nota</option>
                                 <option value="1">⭐</option>
@@ -133,7 +142,7 @@
 
                 <!-- Botões -->
                 <div class="d-flex justify-content-between mt-4">
-                    <button type="submit" class="btn btn-primary w-48">Salvar Alterações</button>
+                    <button type="submit" class="btn btn-primary w-48">Salvar Alterações.</button>
                     <a asp-controller="Livro" asp-action="Index" class="btn btn-secondary w-48">Voltar</a>
                 </div>
 

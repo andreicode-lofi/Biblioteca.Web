@@ -17,39 +17,36 @@
                 <!-- Coluna Esquerda -->
                 <div class="col-md-6">
                     <!-- Card para imagem -->
-                    <div class="card mb-3 p-3">
-                        <img id="imagePreview" class="card-img-top"
-                             style="width: 100%; height: 250px; object-fit: cover;"
-                             src="@(string.IsNullOrEmpty(Model.Imagem) ? "" : Url.Content("~/images/" + Model.Imagem))" />
+                    <div class="card mb-3 p-3" style="border: none; background-color: transparent; max-width: 230px; margin: 0 auto;">
+                        @{
+                            string imagemSrc = string.IsNullOrEmpty(Model.Imagem)
+                            ? ""
+                            : (Model.Imagem.StartsWith("http") ? Model.Imagem : Url.Content("~/images/" + Model.Imagem));
+                        }
+
+                        <div style="width: 100%; aspect-ratio: 2/3; background-color: #f0f0f0; border-radius: 8px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                            <img id="imagePreview"
+                                 class="shadow"
+                                 src="@imagemSrc"
+                                 style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+                        </div>
                     </div>
 
-                    <!-- Nome do Livro -->
+                    <!-- Sinopse -->
                     <div class="form-group text-start mb-3">
-                        <label class="form-label discord-color">Nome do Livro</label>
-                        <p class="form-control-static">@Model.Name</p>
-                    </div>
-
-                    <!-- Autor -->
-                    <div class="form-group text-start mb-3">
-                        <label class="form-label discord-color">Autor</label>
-                        <p class="form-control-static">@Model.Autor</p>
-                    </div>
-
-                    <!-- Gênero -->
-                    <div class="form-group text-start mb-3">
-                        <label class="form-label discord-color">Gênero</label>
-                        <p class="form-control-static">@Model.Genero</p>
+                        <label class="form-label discord-color">Sinopse.</label>
+                        <p class="form-control-static">@Model.Sinopese</p>
                     </div>
 
                     <!-- Idioma -->
-                    <div class="form-group text-start mb-3">
+                   <!-- <div class="form-group text-start mb-3">
                         <label class="form-label discord-color">Idioma</label>
                         <p class="form-control-static">@Model.Idioma</p>
-                    </div>
+                    </div>-->
 
                     <!-- Ano -->
                     <div class="form-group text-start mb-3">
-                        <label class="form-label discord-color">Ano de Publicação</label>
+                        <label class="form-label discord-color">Ano de Publicação.</label>
                         <p class="form-control-static">@Model.ano</p>
                     </div>
 
@@ -58,11 +55,11 @@
                         <label class="form-check-label discord-color">
                             @if (Model.LivroFinalizado)
                             {
-                                <span>Livro Finalizado</span>
+                                <span>Livro Finalizado.</span>
                             }
                             else
                             {
-                                <span>Livro Não Finalizado</span>
+                                <span>Livro Não Finalizado.</span>
                             }
                         </label>
                     </div>
@@ -70,12 +67,25 @@
 
                 <!-- Coluna Direita -->
                 <div class="col-md-6">
-                    <!-- Sinopse -->
+
+                    <!-- Nome do Livro -->
                     <div class="form-group text-start mb-3">
-                        <label class="form-label discord-color">Sinopse</label>
-                        <p class="form-control-static">@Model.Sinopese</p>
+                        <label class="form-label discord-color">Nome do Livro.</label>
+                        <p class="form-control-static">@Model.Name</p>
                     </div>
 
+                    <!-- Autor -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Autor.</label>
+                        <p class="form-control-static">@Model.Autor</p>
+                    </div>
+
+                    <!-- Gênero -->
+                    <div class="form-group text-start mb-3">
+                        <label class="form-label discord-color">Gênero.</label>
+                        <p class="form-control-static">@Model.Genero</p>
+                    </div>
+                    
                     <!-- Comentários -->
                     <div class="form-group text-start mb-3">
                         <label class="form-label discord-color">Meu Comentário Sobre o Livro @Model.Name</label>
@@ -84,7 +94,7 @@
 
                     <!-- Avaliação -->
                     <div class="form-group text-start mb-3">
-                        <label class="form-label discord-color">Avaliação</label>
+                        <label class="form-label discord-color">Avaliação.</label>
                         <p class="form-control-static">
                             @switch (Model.Avaliacao)
                             {
@@ -117,13 +127,13 @@
 
                     <!-- Número de Páginas -->
                     <div class="form-group text-start mb-3">
-                        <label class="form-label discord-color">Número de Páginas</label>
+                        <label class="form-label discord-color">Número de Páginas.</label>
                         <p class="form-control-static">@Model.NumeroPaginas</p>
                     </div>
 
                     <!-- Trechos Favoritos -->
                     <div id="trechosFavoritos" class="form-group text-start mb-3">
-                        <label class="form-label discord-color">Trechos que Marcaram Minha Leitura</label>
+                        <label class="form-label discord-color">Trechos que Marcaram Minha Leitura.</label>
                         <ul class="list-group">
                             @{
                                 var trechos = ViewData["TrechosPaginados"] as X.PagedList.IPagedList<string>;

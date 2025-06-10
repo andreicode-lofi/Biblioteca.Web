@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Biblioteca.Servico.Servicos;
 using Biblioteca.Web.Context;
 using Biblioteca.Web.Repository;
@@ -33,6 +32,7 @@ builder.Services.AddScoped<GerenciadorDeSessao>();
 builder.Services.AddScoped<EmailServico>();
 builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IGoogleBooksService, GoogleBooksService>();
 //=================================================================================
 builder.Services.AddControllersWithViews();
 
@@ -63,7 +63,13 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 
-//====================================================================================
-/*var url = "http://localhost:5000";
-Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });*/
+//======verificando se tem usuario inativos==============================================================================
+
+using (var scope = app.Services.CreateScope())
+{
+    var userRepository = scope.ServiceProvider.GetRequiredService<IUsuarioRepository>();
+    await userRepository.ExcluirUsuariosInativosAsync();
+}
+
+
 app.Run();

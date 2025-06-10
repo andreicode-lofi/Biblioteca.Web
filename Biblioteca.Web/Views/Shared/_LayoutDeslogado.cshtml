@@ -22,16 +22,15 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <!-- <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Livro"
-                                asp-action="Index">catálogo livros</a>
+                            <a class="nav-link text-white bg-success rounded px-3" href="#" data-bs-toggle="modal" data-bs-target="#modalDoacao">
+                                Ajude o Litmap 💖
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Livro" asp-action="Create">criar
-                                livro</a>
-                        </li>
-                    </ul>-->
+                    </ul>
+
+
                 </div>
             </div>
         </nav>
@@ -50,7 +49,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <!--modal-->
+    @await Html.PartialAsync("_ModalDoacao")
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 
 </html>

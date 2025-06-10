@@ -21,6 +21,9 @@ namespace Biblioteca.Web.Repository
 
             if (usuario != null && BCrypt.Net.BCrypt.Verify(senha, usuario.SenhaHas))
             {
+                usuario.DataAtualizacao = DateTime.UtcNow;
+                _context.Usuarios.Update(usuario);         
+                await _context.SaveChangesAsync();         
                 return usuario;
             }
 
@@ -75,12 +78,47 @@ namespace Biblioteca.Web.Repository
             }
 
             _context.Livros.RemoveRange(livrosDoUsuario);
-
             _context.Usuarios.Remove(usuario);
 
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<int> ExcluirUsuariosInativosAsync()
+        {
+            var doisMesesAtras = DateTime.UtcNow.AddMonths(-2);
+
+            var usuariosInativos = await _context.Usuarios
+                .Where(u => u.DataAtualizacao != null && u.DataAtualizacao <= doisMesesAtras)
+                .ToListAsync();
+
+            foreach (var usuario in usuariosInativos)
+            {
+                var livrosDoUsuario = await _context.Livros
+                    .Where(l => l.UsuarioId == usuario.Id)
+                    .ToListAsync();
+
+                foreach (var livro in livrosDoUsuario)
+                {
+                    if (!string.IsNullOrEmpty(livro.Imagem))
+                    {
+                        string caminhoImagem = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", livro.Imagem);
+
+                        if (System.IO.File.Exists(caminhoImagem))
+                        {
+                            System.IO.File.Delete(caminhoImagem);
+                        }
+                    }
+                }
+
+                _context.Livros.RemoveRange(livrosDoUsuario);
+                _context.Usuarios.Remove(usuario);
+            }
+
+            return await _context.SaveChangesAsync();
+        }
+
+
 
         //===================================redefinição de senha==================================================================
 
@@ -123,5 +161,7 @@ namespace Biblioteca.Web.Repository
             await _context.SaveChangesAsync();
             return true;
         }
+
+       
     }
 }
