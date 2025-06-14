@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\andre\\source\\repos\\Biblioteca\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\shared\\_layoutdeslogado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\shared\\_layoutdeslogado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 53,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +27,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_LayoutDeslogado.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Shared\\_LayoutDeslogado.cshtml",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\Shared\\_LayoutDeslogado.cshtml",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Shared\\_LayoutDeslogado.cshtml",
+              "RelativeToolTip": "Biblioteca.Web\\Views\\Shared\\_LayoutDeslogado.cshtml",
+              "ViewState": "AgIAACUAAAAAAAAAAAAkwC8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-14T17:58:52.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "Biblioteca.Web\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAAAKIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-13T17:36:12.678Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -305,7 +305,7 @@ public class LivroController : Controller
             return NotFound("Livro não encontrado ou não pertence ao usuário informado.");
 
 
-        int pageSize = 1;
+        int pageSize = 2;
         int pageNumber = page ?? 1;
 
         IPagedList<string> trechosPaginados = new List<string>().ToPagedList(pageNumber, pageSize);
