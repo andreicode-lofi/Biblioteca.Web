@@ -3,22 +3,34 @@
   "WorkspaceRootPath": "C:\\Users\\andre\\source\\repos\\Biblioteca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\shared\\_layoutdeslogado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\shared\\_layoutdeslogado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\controllers\\livrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\controllers\\livrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\controllers\\usuariologincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\controllers\\usuariologincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\views\\livro\\meusfavoritos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\views\\livro\\meusfavoritos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|c:\\users\\andre\\source\\repos\\biblioteca\\biblioteca.web\\repository\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{836DDEE4-16AB-5776-3FB0-BE7BB8912CCA}|Biblioteca.Web\\Biblioteca.Web.csproj|solutionrelative:biblioteca.web\\repository\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 1,
+      "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 53,
-          "SelectedChildIndex": 3,
+          "DockedWidth": 85,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,28 +42,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_LayoutDeslogado.cshtml",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Shared\\_LayoutDeslogado.cshtml",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\Shared\\_LayoutDeslogado.cshtml",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Shared\\_LayoutDeslogado.cshtml",
-              "RelativeToolTip": "Biblioteca.Web\\Views\\Shared\\_LayoutDeslogado.cshtml",
-              "ViewState": "AgIAACUAAAAAAAAAAAAkwC8AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-14T17:58:52.478Z",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\appsettings.json",
+              "RelativeToolTip": "Biblioteca.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-30T14:44:39.02Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "site.css",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\wwwroot\\css\\site.css",
-              "RelativeDocumentMoniker": "Biblioteca.Web\\wwwroot\\css\\site.css",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\wwwroot\\css\\site.css",
-              "RelativeToolTip": "Biblioteca.Web\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAIgAAAAAAAAAAAAAAKIAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-13T17:36:12.678Z",
+              "DocumentIndex": 4,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Repository\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Repository\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Repository\\UsuarioRepository.cs",
+              "RelativeToolTip": "Biblioteca.Web\\Repository\\UsuarioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T14:23:51.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MeusFavoritos.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Livro\\MeusFavoritos.cshtml",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Views\\Livro\\MeusFavoritos.cshtml",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Views\\Livro\\MeusFavoritos.cshtml",
+              "RelativeToolTip": "Biblioteca.Web\\Views\\Livro\\MeusFavoritos.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-30T13:32:34.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LivroController.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\LivroController.cs",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Controllers\\LivroController.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\LivroController.cs",
+              "RelativeToolTip": "Biblioteca.Web\\Controllers\\LivroController.cs",
+              "ViewState": "AgIAABkBAAAAAAAAAAAAADYBAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T14:14:33.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuarioLoginController.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
+              "RelativeDocumentMoniker": "Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\Biblioteca\\Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
+              "RelativeToolTip": "Biblioteca.Web\\Controllers\\UsuarioLoginController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowDEAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T13:47:51.533Z",
               "EditorCaption": ""
             }
           ]

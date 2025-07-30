@@ -156,6 +156,8 @@ public class LivroController : Controller
     public async Task<IActionResult> Delete(string id)
     {
         var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
+        if (usuarioId == null)
+            return RedirectToAction("Login", "Usuario");
 
         var livroOriginal = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
@@ -181,6 +183,10 @@ public class LivroController : Controller
     public async Task<IActionResult> Details(string id, int? page)
     {
         var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
+        if (usuarioId == null)
+            return RedirectToAction("Login", "Usuario");
+
+
         var livro = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livro == null)
@@ -210,6 +216,10 @@ public class LivroController : Controller
     {
         var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
 
+        if (usuarioId == null)
+            return RedirectToAction("Login", "Usuario");
+
+
         var livro = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livro == null)
@@ -222,6 +232,9 @@ public class LivroController : Controller
     public async Task<IActionResult> Edit(string id, LivroModel livro, IFormFile? foto, List<string> trechosFavoritos)
     {
         var usuarioId = HttpContext.Session.GetString("UsuarioId")!;
+        if (usuarioId == null)
+            return RedirectToAction("Login", "Usuario");
+
         var livroOriginal = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livroOriginal == null)
@@ -285,7 +298,7 @@ public class LivroController : Controller
             return RedirectToAction("Login", "Usuario");
 
         var favoritos = await _ilivroRepository.ObterFavoritosDoUsuarioAsync(usuarioId);
-
+        
         if (!favoritos.Any())
         {
             ViewBag.Mensagem = "Você ainda não marcou nenhum livro como favorito.";
@@ -298,7 +311,9 @@ public class LivroController : Controller
     [HttpGet("Livro/MeusFavoritosDetails/{usuarioId}/{id}")]
     public async Task<IActionResult>MeusFavoritosDetails(string id, string usuarioId, int? page)
     {
-        
+        if (usuarioId == null)
+            return RedirectToAction("Login", "Usuario");
+
         var livro = await _ilivroRepository.GetByIdAsync(id, usuarioId);
 
         if (livro == null)

@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//builder.WebHost.UseWebRoot("wwwroot");
+
 // Configurando do banco de dados==================================================
 string? pgSqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -48,13 +50,17 @@ if (!app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();         
+
+
 app.UseRouting();
 
 app.UseSession();// Habilitando o uso de sess�es
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
+//app.MapStaticAssets();
 
 
 app.MapControllerRoute(

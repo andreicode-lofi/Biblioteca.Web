@@ -84,6 +84,9 @@ public class UsuarioLoginController : Controller
     {
         var usuarioId = HttpContext.Session.GetString("UsuarioId");
 
+        if (usuarioId == null)
+            return RedirectToAction("Login", "Usuario");
+
         if (string.IsNullOrEmpty(usuarioId))
         {
             TempData["Erro"] = "Usuário não está logado.";

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Biblioteca.Web.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250521045137_livrosfavoritoslink")]
-    partial class livrosfavoritoslink
+    [Migration("20250616203444_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
